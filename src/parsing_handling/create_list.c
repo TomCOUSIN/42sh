@@ -37,13 +37,13 @@ int	create_list(char *str, list_t **cmd)
 			actual_cmd = my_realloc(actual_cmd, size);
 			actual_cmd[size - 1] = str[index];
 			size = size + 1;
+			index = index + 1;
 		} else {
 			my_put_in_list(cmd, actual_cmd);
 			actual_cmd = NULL;
 			size = 1;
 			add_separator(cmd, str, &index);
 		}
-		index = index + 1;
 	}
 	if (actual_cmd != NULL)
 		my_put_in_list(cmd, actual_cmd);
