@@ -8,4 +8,9 @@
 # ifndef	SH_H_
 # define	SH_H_
 
+/*
+** src/shell
+*/
+int	shell(char **env);
+
 # endif		/* SH_H_ */
