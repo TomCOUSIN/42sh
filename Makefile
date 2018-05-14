@@ -11,13 +11,24 @@ CC=		gcc -O3 -Ofast -o
 
 RM=		rm -f
 
-ENV_HANDLING=	copy_env.c
+ENV_HANDLING=			copy_env.c
 
-SHELL_HANDLING=	shell.c
+PARSING_SEPARATOR_HANDLING=	is_a_separator.c
 
-SRC=		$(addprefix src/shell_handling/, $(SHELL_HANDLING))	\
-		$(addprefix src/env_handling/, $(ENV_HANDLING))		\
-		src/main.c
+PARSING_HANDLING=		$(addprefix separator_handling/, $(PARSING_SEPARATOR_HANDLING))	\
+				my_put_separator.c						\
+				my_put_in_list.c						\
+				my_show_list.c							\
+				create_list.c							\
+				free_list.c
+
+
+SHELL_HANDLING=			shell.c
+
+SRC=				$(addprefix src/parsing_handling/, $(PARSING_HANDLING))		\
+				$(addprefix src/shell_handling/, $(SHELL_HANDLING))		\
+				$(addprefix src/env_handling/, $(ENV_HANDLING))			\
+				src/main.c
 
 OBJ=		$(SRC:.c=.o)
 

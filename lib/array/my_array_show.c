@@ -12,7 +12,7 @@ int	my_array_show(char const **array)
 {
 	int	index = 0;
 
-	while (array[index] != NULL) {
+	while (array && array[index] != NULL) {
 		my_printf("%s\n", array[index]);
 		index = index + 1;
 	}

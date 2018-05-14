@@ -24,7 +24,7 @@ static	int	fill_copy(char *copy, char *str)
 {
 	int index = 0;
 
-	while (str[index] != '\0') {
+	while (str && str[index] != '\0') {
 		copy[index] = str[index];
 		index = index + 1;
 	}

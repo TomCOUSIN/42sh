@@ -12,7 +12,7 @@ int	my_array_free(char **array)
 {
 	int	index = 0;
 
-	while (array[index] != NULL) {
+	while (array && array[index] != NULL) {
 		free(array[index]);
 		index = index + 1;
 	}

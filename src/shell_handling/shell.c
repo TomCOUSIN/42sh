@@ -6,16 +6,21 @@
 */
 
 # include <stdlib.h>
+# include <unistd.h>
+# include "parsing.h"
 # include "my.h"
 
 static	int	display_prompt(void)
 {
-	my_printf("$> ");
+	if (isatty(0)) {
+		my_printf("$> ");
+	}
 	return (0);
 }
 
 int	shell(char **env)
 {
+	list_t	*cmd = NULL;
 	char	*str = NULL;
 	int	status = 0;
 
@@ -23,7 +28,10 @@ int	shell(char **env)
 	while (1) {
 		display_prompt();
 		str = get_next_line(0);
-		if (my_strcmp(str, "exit") == 0) {
+		create_list(str, &cmd);
+		my_show_list(&cmd);
+		free_list(&cmd);
+		if (!str || my_strcmp(str, "exit") == 0) {
 			free(str);
 			break;
 		}
