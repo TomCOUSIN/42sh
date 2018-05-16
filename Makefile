@@ -11,6 +11,9 @@ CC=		gcc -O3 -Ofast -o
 
 RM=		rm -f
 
+BUILTIN=			setenv/my_setenv.c	\
+				setenv/setenv_error.c
+
 ENV_HANDLING=			copy_env.c	\
 				find_env.c
 
@@ -27,8 +30,9 @@ PARSING_HANDLING=		$(addprefix separator_handling/, $(PARSING_SEPARATOR_HANDLING
 SHELL_HANDLING=			shell.c
 
 SRC=				$(addprefix src/parsing_handling/, $(PARSING_HANDLING))		\
-				$(addprefix src/shell_handling/, $(SHELL_HANDLING))		\
+				$(addprefix src/shell_handling/, $(SHELL_HANDLING))			\
 				$(addprefix src/env_handling/, $(ENV_HANDLING))			\
+				$(addprefix src/builtin/, $(BUILTIN))					\
 				src/main.c
 
 OBJ=		$(SRC:.c=.o)
