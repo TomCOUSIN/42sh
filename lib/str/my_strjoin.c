@@ -5,8 +5,8 @@
 ** Concatenate two strings
 */
 
-#include <stdlib.h>
-#include <string.h>
+# include <stdlib.h>
+# include <string.h>
 
 char	*my_strjoin(char const *str1, char const *str2)
 {
