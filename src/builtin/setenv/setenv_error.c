@@ -42,12 +42,12 @@ static int	is_alphanumeric(char *str)
 {
 	int	index = 0;
 
-	if (isdigit(str[index]) == 0) {
+	if (!isalpha(str[index]) && str[index] != '_') {
 		write(2, BAD_FIRST_DIGIT, strlen(BAD_FIRST_DIGIT));
 		return (-1);
 	}
 	while (str[index] != '\0') {
-		if (isalnum(str[index]) != 0 && str[index] != '_') {
+		if (!isalnum(str[index]) && str[index] != '_') {
 			write(2, NOT_ALPHANUMERIC, strlen(NOT_ALPHANUMERIC));
 			return (-1);
 		}
