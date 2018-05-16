@@ -11,7 +11,8 @@ CC=		gcc -O3 -Ofast -o
 
 RM=		rm -f
 
-ENV_HANDLING=			copy_env.c
+ENV_HANDLING=			copy_env.c	\
+				find_env.c
 
 PARSING_SEPARATOR_HANDLING=	is_a_separator.c
 
