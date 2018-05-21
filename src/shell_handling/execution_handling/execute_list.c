@@ -11,10 +11,11 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdio.h>
-# include "sh.h"
 # include "separator.h"
+# include "builtin.h"
 # include "parsing.h"
 # include "my.h"
+# include "sh.h"
 
 static int my_fork(list_t *tmp, char **env)
 {
@@ -40,7 +41,7 @@ static int execute_command(list_t *cmd, char **env)
 
 	if (cmd == NULL)
 		return (0);
-	printf("CACACACACC %s\n", cmd->next[CMD]->cmd[0]);
+	my_printf("CACACACACC %s\n", cmd->next[CMD]->cmd[0]);
 	pid_son = my_fork(cmd->next[CMD], env);
 	if (pid_son == -1)
 		return (-1);
@@ -53,11 +54,17 @@ static int execute_command(list_t *cmd, char **env)
 	return (signal_handler(status));
 }
 
-int	execute_list(list_t **cmd, char **env)
+int	execute_list(list_t **cmd, char ***env)
 {
 	list_t	*tmp = *cmd;
 	int	status = 0;
 
-	status = execute_command(tmp, env);
+	find_builtin(tmp->next[1]->cmd, env, &status);
+	if (status != 2) {
+		status = execute_command(tmp, *env);
+	}
+	else {
+		status = 0;
+	}
 	return (status);
 }

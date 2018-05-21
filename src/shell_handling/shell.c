@@ -25,7 +25,7 @@ static	int	display_prompt(void)
 	return (0);
 }
 
-int	shell(char **env)
+int	shell(char ***env)
 {
 	list_t	*cmd = NULL;
 	char	*str = NULL;

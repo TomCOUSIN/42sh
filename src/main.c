@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 	if (env == NULL) {
 		return (84);
 	}
-	status = shell(env);
+	status = shell(&env);
 	my_array_free(env);
 	return (status);
 }
