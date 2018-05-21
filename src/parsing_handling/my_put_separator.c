@@ -24,6 +24,7 @@ int	my_put_separator(list_t **cmd, char *separator)
 	element->cmd = my_str_to_word_array(separator);
 	element->next[0] = NULL;
 	element->next[1] = NULL;
+	element->prev = tmp;
 	tmp->next[0] = element;
 	return (0);
 }

@@ -9,8 +9,18 @@
 # define	SH_H_
 
 /*
-** src/shell
+** necessary include
+*/
+# include "parsing.h"
+
+/*
+** src/shell_handling
 */
 int	shell(char **env);
+
+/*
+** src/shell_handling/execution_handling
+*/
+int	execute_list(list_t **cmd, char **env);
 
 # endif		/* SH_H_ */

@@ -26,13 +26,15 @@ PARSING_HANDLING=		$(addprefix separator_handling/, $(PARSING_SEPARATOR_HANDLING
 				create_list.c							\
 				free_list.c
 
+SHELL_EXECUTION_HANDLING=	execute_list.c
 
-SHELL_HANDLING=			shell.c
+SHELL_HANDLING=			$(addprefix execution_handling/, $(SHELL_EXECUTION_HANDLING))	\
+				shell.c
 
 SRC=				$(addprefix src/parsing_handling/, $(PARSING_HANDLING))		\
-				$(addprefix src/shell_handling/, $(SHELL_HANDLING))			\
+				$(addprefix src/shell_handling/, $(SHELL_HANDLING))		\
 				$(addprefix src/env_handling/, $(ENV_HANDLING))			\
-				$(addprefix src/builtin/, $(BUILTIN))					\
+				$(addprefix src/builtin/, $(BUILTIN))				\
 				src/main.c
 
 OBJ=		$(SRC:.c=.o)
@@ -40,7 +42,7 @@ OBJ=		$(SRC:.c=.o)
 CFLAGS=		-Wall -Wextra
 CFLAGS+=	-I./include
 
-LDFLAGS=	-L./lib/ -lmy
+LDFLAGS=	-lncurses -L./lib/ -lmy
 
 LPATH=		lib/
 

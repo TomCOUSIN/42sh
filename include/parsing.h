@@ -15,6 +15,7 @@ typedef	struct list_s
 {
 	char		**cmd;
 	struct	list_s	*next[2];
+	struct	list_s	*prev;
 } list_t;
 
 /*

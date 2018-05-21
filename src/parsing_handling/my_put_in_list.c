@@ -20,6 +20,7 @@ static	int	put_first_node(list_t **cmd, char *actual_cmd)
 	element->cmd = my_str_to_word_array(actual_cmd);
 	element->next[0] = NULL;
 	element->next[1] = NULL;
+	element->prev = NULL;
 	*cmd = element;
 	return (0);
 }
@@ -39,6 +40,7 @@ static	int	put_node(list_t **cmd, char *actual_cmd)
 	element->cmd = my_str_to_word_array(actual_cmd);
 	element->next[0] = NULL;
 	element->next[1] = NULL;
+	element->prev = NULL;
 	tmp->next[1] = element;
 	return (0);
 }

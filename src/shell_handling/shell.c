@@ -9,6 +9,7 @@
 # include <unistd.h>
 # include "parsing.h"
 # include "my.h"
+# include "sh.h"
 
 static	int	display_prompt(void)
 {
@@ -29,6 +30,7 @@ int	shell(char **env)
 		display_prompt();
 		str = get_next_line(0);
 		create_list(str, &cmd);
+		status = execute_list(&cmd, env);
 		my_show_list(&cmd);
 		free_list(&cmd);
 		if (!str || my_strcmp(str, "exit") == 0) {
