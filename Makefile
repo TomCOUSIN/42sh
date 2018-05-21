@@ -7,14 +7,40 @@
 
 SHELL=		bash
 
-CC=		gcc -O3 -Ofast -o
+CC=		gcc -Ofast -o
 
 RM=		rm -f
 
-BUILTIN=			setenv/my_setenv.c	\
-				setenv/setenv_error.c
+CD		=		find_env_variable.c						\
+				change_directory.c						\
+				go_to_target.c							\
+				change_env.c							\
+				go_home.c							\
+				go_back.c
 
-ENV_HANDLING=			copy_env.c	\
+UNSETENV	=		remove_variable.c						\
+				remove_env.c
+
+SETENV		=		create_new_var_not_empty.c					\
+				overwrite_var_not_empty.c					\
+				create_new_var_empty.c						\
+				find_variable_index.c						\
+				overwrite_var_empty.c						\
+				is_variable_exist.c						\
+				create_new_var.c						\
+				overwrite_var.c							\
+				modify_env.c
+
+BUILTIN		=		$(addprefix unsetenv/, $(UNSETENV))				\
+				$(addprefix setenv/, $(SETENV))					\
+				$(addprefix cd/, $(CD))						\
+				find_builtin.c							\
+				do_unsetenv.c							\
+				do_setenv.c							\
+				do_env.c							\
+				do_cd.c
+
+ENV_HANDLING=			copy_env.c							\
 				find_env.c
 
 PARSING_SEPARATOR_HANDLING=	is_a_separator.c
