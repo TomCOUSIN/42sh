@@ -23,4 +23,9 @@ int	shell(char **env);
 */
 int	execute_list(list_t **cmd, char **env);
 
+/*
+** src/shell_handling/signal_handler.c
+*/
+int	signal_handler(int status);
+
 # endif		/* SH_H_ */
