@@ -12,9 +12,14 @@
 
 static	int	display_prompt(void)
 {
+	char	*buf = NULL;
+	size_t	size = 0;
+
 	if (isatty(0)) {
-		my_printf("$> ");
+		buf = getcwd(buf, size);
+		my_printf("%s> ", buf);
 	}
+	free(buf);
 	return (0);
 }
 
