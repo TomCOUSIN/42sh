@@ -22,7 +22,17 @@ static	int	add_separator(list_t **cmd, char *str, int *index)
 		*index = *index + 1;
 	}
 	my_put_separator(cmd, separator);
-	free(separator);
+	return (0);
+}
+
+static	int	put_first_separator(list_t **cmd)
+{
+	char	*str = NULL;
+	int	size = 1;
+
+	str = my_realloc(str, size);
+	str[size - 1] = ';';
+	my_put_separator(cmd, str);
 	return (0);
 }
 
@@ -32,6 +42,7 @@ int	create_list(char *str, list_t **cmd)
 	int	index = 0;
 	int	size = 1;
 
+	put_first_separator(cmd);
 	while (str && str[index] != '\0') {
 		if (!is_a_separator(str[index])) {
 			actual_cmd = my_realloc(actual_cmd, size);
