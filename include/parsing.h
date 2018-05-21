@@ -8,6 +8,9 @@
 # ifndef	PARSING_H_
 # define	PARSING_H_
 
+# define	CMD	0
+# define	SEPARATOR	1
+
 /*
 ** necessary structure
 */

@@ -15,27 +15,45 @@
 # include "parsing.h"
 # include "my.h"
 
-static	int	execute_command(list_t *tmp, char **env)
+static int my_fork(list_t *tmp, char **env)
 {
-	int	status = 0;
 	int	pid = 0;
+	int	status = 0;
 
 	pid = fork();
 	if (pid == 0) {
 		status = execve(tmp->cmd[0], tmp->cmd, env);
 		exit(status);
 	}
-	else {
-		waitpid(0, &status, 0);
-		kill(pid, status);
+	else if (pid > 0) {
+		return (pid);
 	}
+	return (-1);
+}
+
+static int execute_command(list_t *cmd, char **env)
+{
+	int pid_son = 0;
+	int	status = 0;
+
+	if (cmd == NULL)
+		return (0);
+	pid_son = my_fork(cmd, env);
+	if (pid_son == -1)
+		return (-1);
+	if (execute_command(cmd->next[CMD], env) == -1)
+		return (-1);
+	waitpid(0, &status, 0);
+	kill(pid_son, status);
+	// check statu;
 	return (status);
 }
 
 int	execute_list(list_t **cmd, char **env)
 {
 	list_t	*tmp = *cmd;
+	int	status = 0;
 
-	execute_command(tmp, env);
-	return (0);
+	status = execute_command(tmp, env);
+	return (status);
 }
