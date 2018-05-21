@@ -7,6 +7,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 # include "parsing.h"
 # include "my.h"
 # include "sh.h"
@@ -30,18 +31,17 @@ int	shell(char **env)
 	char	*str = NULL;
 	int	status = 0;
 
-	(void)env;
 	while (1) {
 		display_prompt();
 		str = get_next_line(0);
-		create_list(str, &cmd);
-		status = execute_list(&cmd, env);
-		my_show_list(&cmd);
-		free_list(&cmd);
 		if (!str || my_strcmp(str, "exit") == 0) {
 			free(str);
 			break;
 		}
+		create_list(str, &cmd);
+		status = execute_list(&cmd, env);
+		my_show_list(&cmd);
+		free_list(&cmd);
 		free(str);
 	}
 	return (status);
