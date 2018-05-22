@@ -1,2 +1,2 @@
 alias toto ls
-alias tutu cd
+alias tutu ls -l | grep Makefile

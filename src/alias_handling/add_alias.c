@@ -19,11 +19,15 @@ int	add_alias(char **alias, alias_t **alias_struct)
 		display_alias(alias_struct);
 		return (0);
 	}
+	if (!alias[2]) {
+		display_alias_content(alias[1], alias_struct);
+		return (0);
+	}
 	if (is_alias_exist(alias[1], alias_struct)) {
-		overwrite_alias(alias[1], alias[2], alias_struct);
+		overwrite_alias(alias[1], alias, alias_struct);
 	}
 	else {
-		add_alias_node(alias_struct, alias[1], alias[2]);
+		add_alias_node(alias_struct, alias[1], alias);
 	}
 	return (0);
 }

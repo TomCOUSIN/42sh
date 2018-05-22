@@ -2,22 +2,18 @@
 ** EPITECH PROJECT, 2018
 ** 42sh
 ** File description:
-** display all alias
+** display the content of an alias
 */
 
 # include <unistd.h>
+# include <string.h>
 # include "alias.h"
 # include "my.h"
 
 static	int	display_content(char **array)
 {
 	int	index = 0;
-	int	parenthesis = 0;
 
-	if (array[index + 1] != NULL) {
-		my_printf("(");
-		parenthesis = 1;
-	}
 	while (array[index] != NULL) {
 		my_printf("%s", array[index]);
 		if (array[index + 1] != NULL) {
@@ -25,20 +21,18 @@ static	int	display_content(char **array)
 		}
 		index = index + 1;
 	}
-	if (parenthesis) {
-		my_printf(")");
-	}
 	my_printf("\n");
 	return (0);
 }
 
-int	display_alias(alias_t **alias)
+int	display_alias_content(char *alias, alias_t **alias_struct)
 {
-	alias_t	*tmp = *alias;
+	alias_t	*tmp = *alias_struct;
 
 	while (tmp != NULL) {
-		my_printf("%s	", tmp->alias);
-		display_content(tmp->cmd);
+		if (strcmp(tmp->alias, alias) == 0) {
+			display_content(tmp->cmd);
+		}
 		tmp = tmp->next;
 	}
 	return (0);

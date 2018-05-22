@@ -11,9 +11,11 @@ CC=		gcc -Ofast -o
 
 RM=		rm -f
 
-ALIAS_HANDLING	=		overwrite_alias.c						\
+ALIAS_HANDLING	=		display_alias_content.c						\
+				overwrite_alias.c						\
 				add_alias_node.c						\
 				is_alias_exist.c						\
+				transform_cmd.c							\
 				display_alias.c							\
 				remove_alias.c							\
 				free_alias.c							\

@@ -7,6 +7,7 @@
 
 # include <stdlib.h>
 # include "alias.h"
+# include "my.h"
 
 int	free_alias(alias_t **alias)
 {
@@ -14,7 +15,7 @@ int	free_alias(alias_t **alias)
 
 	while (tmp != NULL) {
 		free(tmp->alias);
-		free(tmp->cmd);
+		my_array_free(tmp->cmd);
 		*alias = tmp->next;
 		free(tmp);
 		tmp = *alias;

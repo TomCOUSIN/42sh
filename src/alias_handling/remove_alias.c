@@ -8,13 +8,14 @@
 # include <stdlib.h>
 # include <string.h>
 # include "alias.h"
+# include "my.h"
 
 static	int	free_it(alias_t	**tmp, alias_t **alias_struct, int *index)
 {
 	alias_t	*to_free = *tmp;
 
 	free(to_free->alias);
-	free(to_free->cmd);
+	my_array_free(to_free->cmd);
 	free(to_free);
 	*tmp = *alias_struct;
 	*index = 0;

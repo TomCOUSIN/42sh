@@ -27,12 +27,12 @@ alias_t	*init_alias(void)
 	}
 	line = get_next_line(fd);
 	while (line) {
-		if (line != NULL) {
-			array = my_str_to_word_array(line);
-			add_alias_node(&alias, array[1], array[2]);
-			my_array_free(array);
-			free(line);
+		array = my_str_to_word_array(line);
+		if (array[2]) {
+			add_alias_node(&alias, array[1], array);
 		}
+		my_array_free(array);
+		free(line);
 		line = get_next_line(fd);
 	}
 	free(line);
