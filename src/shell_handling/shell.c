@@ -40,7 +40,7 @@ int	shell(char ***env)
 		}
 		create_list(str, &cmd);
 		status = execute_list(&cmd, env);
-		// my_show_list(&cmd);
+		//my_show_list(&cmd);
 		free_list(&cmd);
 		free(str);
 	}

@@ -22,15 +22,22 @@ static	int	my_custom_strlen(char *str, int index)
 static	char	*my_strndup(char *str, int *index)
 {
 	char	*string = NULL;
+	int	quote = 0;
 	int	i = 0;
 
 	string = malloc(sizeof(char) * (my_custom_strlen(str, *index) + 2));
 	if (string == NULL)
 		return (NULL);
-	while (str[*index] != ' ' && str[*index] != '\0') {
+	if (str[*index] == '"') {
+			quote = 1;
+	}
+	while ((quote || str[*index] != ' ') && str[*index] != '\0') {
 		string[i] = str[*index];
 		*index = *index + 1;
 		i++;
+		if (str[*index] == '"') {
+			quote = 0;
+		}
 	}
 	string[i] = '\0';
 	*index = *index + 1;
@@ -43,9 +50,13 @@ static	int	count_words(char *str)
 {
 	int	index = 0;
 	int	count = 0;
+	int	quote = 0;
 
 	while (str && str[index] != '\0') {
-		if (str[index] == ' ')
+		if (str[index] == '"') {
+			quote += 1;
+		}
+		if (str[index] == ' ' && (quote % 2 == 0))
 			count = count + 1;
 		index = index + 1;
 	}
