@@ -25,38 +25,27 @@ static	int	add_separator(list_t **cmd, char *str, int *index)
 	return (0);
 }
 
-static	int	put_first_separator(list_t **cmd)
-{
-	char	*str = NULL;
-	int	size = 1;
-
-	str = my_realloc(str, size);
-	str[size - 1] = ';';
-	my_put_separator(cmd, str);
-	return (0);
-}
-
 int	create_list(char *str, list_t **cmd)
 {
 	char	*actual_cmd = NULL;
 	int	index = 0;
+	int	quote = 0;
 	int	size = 1;
 
-	put_first_separator(cmd);
 	while (str && str[index] != '\0') {
-		if (!is_a_separator(str[index])) {
+		if (str[index] == '"')
+			quote += 1;
+		if (!is_a_separator(str[index]) || quote % 2 == 1) {
 			actual_cmd = my_realloc(actual_cmd, size);
 			actual_cmd[size - 1] = str[index];
 			size = size + 1;
 			index = index + 1;
-		} else {
+		} else if (quote % 2 == 0) {
 			my_put_in_list(cmd, actual_cmd);
 			actual_cmd = NULL;
-			size = 1;
 			add_separator(cmd, str, &index);
+			size = 1;
 		}
 	}
-	if (actual_cmd != NULL)
-		my_put_in_list(cmd, actual_cmd);
-	return (0);
+	return (my_put_in_list(cmd, actual_cmd));
 }

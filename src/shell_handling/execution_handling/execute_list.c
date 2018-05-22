@@ -14,6 +14,7 @@
 # include "separator.h"
 # include "builtin.h"
 # include "parsing.h"
+# include "alias.h"
 # include "my.h"
 # include "sh.h"
 
@@ -54,11 +55,19 @@ static int execute_command(list_t *cmd, char **env)
 	return (signal_handler(status));
 }
 
-int	execute_list(list_t **cmd, char ***env)
+int	execute_list(list_t **cmd, char ***env, alias_t **alias)
 {
 	list_t	*tmp = *cmd;
 	int	status = 0;
 
+	if (my_strcmp(tmp->next[1]->cmd[0], "alias") == 0) {
+		add_alias(tmp->next[1]->cmd, alias);
+		return (0);
+	}
+	else if (my_strcmp(tmp->next[1]->cmd[0], "unalias") == 0) {
+		remove_alias(tmp->next[1]->cmd, alias);
+		return (0);
+	}
 	find_builtin(tmp->next[1]->cmd, env, &status);
 	if (status != 2) {
 		status = execute_command(tmp, *env);

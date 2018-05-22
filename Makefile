@@ -11,6 +11,15 @@ CC=		gcc -Ofast -o
 
 RM=		rm -f
 
+ALIAS_HANDLING	=		overwrite_alias.c						\
+				add_alias_node.c						\
+				is_alias_exist.c						\
+				display_alias.c							\
+				remove_alias.c							\
+				free_alias.c							\
+				init_alias.c							\
+				add_alias.c
+
 CD		=		find_env_variable.c						\
 				change_directory.c						\
 				go_to_target.c							\
@@ -46,6 +55,7 @@ ENV_HANDLING=			copy_env.c							\
 PARSING_SEPARATOR_HANDLING=	is_a_separator.c
 
 PARSING_HANDLING=		$(addprefix separator_handling/, $(PARSING_SEPARATOR_HANDLING))	\
+				put_first_separator.c						\
 				my_put_separator.c						\
 				my_put_in_list.c						\
 				my_show_list.c							\
@@ -60,6 +70,7 @@ SHELL_HANDLING=			$(addprefix execution_handling/, $(SHELL_EXECUTION_HANDLING))	
 
 SRC=				$(addprefix src/parsing_handling/, $(PARSING_HANDLING))		\
 				$(addprefix src/shell_handling/, $(SHELL_HANDLING))		\
+				$(addprefix src/alias_handling/, $(ALIAS_HANDLING))		\
 				$(addprefix src/env_handling/, $(ENV_HANDLING))			\
 				$(addprefix src/builtin/, $(BUILTIN))				\
 				src/main.c

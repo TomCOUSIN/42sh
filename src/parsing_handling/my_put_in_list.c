@@ -47,6 +47,9 @@ static	int	put_node(list_t **cmd, char *actual_cmd)
 
 int	my_put_in_list(list_t **cmd, char *actual_cmd)
 {
+	if (!actual_cmd) {
+		return (84);
+	}
 	actual_cmd = my_clean_str(actual_cmd);
 	if (*cmd == NULL) {
 		put_first_node(cmd, actual_cmd);
