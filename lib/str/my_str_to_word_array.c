@@ -78,7 +78,6 @@ char	**my_str_to_word_array(char *string)
 	if (!string)
 		return (NULL);
 	nb_words = count_words(string);
-	my_printf("%d\n", nb_words);
 	array = malloc(sizeof(char*) * (nb_words + 1));
 	if (array == NULL) {
 		return (NULL);
