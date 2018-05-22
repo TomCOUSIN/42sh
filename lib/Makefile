@@ -33,6 +33,7 @@ ARRAY	=	my_array_realloc.c		\
 
 STR	=	my_str_to_word_array.c		\
 		my_clean_str.c			\
+		my_strsplit.c			\
 		my_strjoin.c			\
 		my_strncmp.c			\
 		my_strdup.c			\

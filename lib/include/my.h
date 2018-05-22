@@ -25,10 +25,10 @@
 /*
 ** str/
 */
-
 	char	*my_strjoin(char const *str1, char const *str2);
 	int	my_strncmp(char const *str1, char const *str2, int index_max);
 	int	my_strcmp(char const *str1, char const *str2);
+	char	**my_strsplit(char const *str, char c);
 	char	**my_str_to_word_array(char *str);
 	char	*my_strdup(char const *src);
 	int	my_strlen(char const *src);
