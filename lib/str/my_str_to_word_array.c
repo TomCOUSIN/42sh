@@ -11,10 +11,17 @@
 static	int	my_custom_strlen(char *str, int index)
 {
 	int	count = 0;
+	int	quote = 0;
 
-	while (str[index] != ' ' && str[index + 1] != '\0') {
+	if (str[index] == '"') {
+		quote = 1;
+	}
+	while ((quote || str[index] != ' ') && str[index + 1] != '\0') {
 		index = index + 1;
 		count = count + 1;
+		if (str[index] == '"') {
+			quote = 0;
+		}
 	}
 	return (count);
 }
@@ -28,16 +35,14 @@ static	char	*my_strndup(char *str, int *index)
 	string = malloc(sizeof(char) * (my_custom_strlen(str, *index) + 2));
 	if (string == NULL)
 		return (NULL);
-	if (str[*index] == '"') {
+	if (str[*index] == '"')
 			quote = 1;
-	}
 	while ((quote || str[*index] != ' ') && str[*index] != '\0') {
 		string[i] = str[*index];
 		*index = *index + 1;
 		i++;
-		if (str[*index] == '"') {
+		if (str[*index] == '"')
 			quote = 0;
-		}
 	}
 	string[i] = '\0';
 	*index = *index + 1;
@@ -73,6 +78,7 @@ char	**my_str_to_word_array(char *string)
 	if (!string)
 		return (NULL);
 	nb_words = count_words(string);
+	my_printf("%d\n", nb_words);
 	array = malloc(sizeof(char*) * (nb_words + 1));
 	if (array == NULL) {
 		return (NULL);

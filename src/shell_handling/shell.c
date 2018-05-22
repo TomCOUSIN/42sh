@@ -34,15 +34,17 @@ int	shell(char ***env)
 	while (1) {
 		display_prompt();
 		str = get_next_line(0);
-		if (!str || my_strcmp(str, "exit") == 0) {
+		if (my_strcmp(str, "exit") == 0) {
 			free(str);
 			break;
 		}
-		create_list(str, &cmd);
-		status = execute_list(&cmd, env);
-		//my_show_list(&cmd);
-		free_list(&cmd);
-		free(str);
+		if (str && my_strcmp(str, "") != 0) {
+			create_list(str, &cmd);
+			status = execute_list(&cmd, env);
+			//my_show_list(&cmd);
+			free_list(&cmd);
+			free(str);
+		}
 	}
 	return (status);
 }
