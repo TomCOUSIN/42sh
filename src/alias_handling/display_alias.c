@@ -5,9 +5,28 @@
 ** display all alias
 */
 
-# include <unistd.h>
+# include <stdlib.h>
 # include "alias.h"
 # include "my.h"
+
+static	int	display_cmd(char **array, int index)
+{
+	char	*copy = NULL;
+
+	while (array[index] != NULL) {
+		if (is_contain_quotes(array[index])) {
+			copy = remove_quotes(array[index]);
+			my_printf("%s", copy);
+			free(copy);
+		}
+		else
+			my_printf("%s", array[index]);
+		if (array[index + 1] != NULL)
+			my_printf(" ");
+		index = index + 1;
+	}
+	return (0);
+}
 
 static	int	display_content(char **array)
 {
@@ -18,16 +37,9 @@ static	int	display_content(char **array)
 		my_printf("(");
 		parenthesis = 1;
 	}
-	while (array[index] != NULL) {
-		my_printf("%s", array[index]);
-		if (array[index + 1] != NULL) {
-			my_printf(" ");
-		}
-		index = index + 1;
-	}
-	if (parenthesis) {
+	display_cmd(array, index);
+	if (parenthesis)
 		my_printf(")");
-	}
 	my_printf("\n");
 	return (0);
 }

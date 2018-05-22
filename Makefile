@@ -12,10 +12,12 @@ CC=		gcc -Ofast -o
 RM=		rm -f
 
 ALIAS_HANDLING	=		display_alias_content.c						\
+				is_contain_quotes.c						\
 				overwrite_alias.c						\
 				add_alias_node.c						\
 				is_alias_exist.c						\
 				transform_cmd.c							\
+				remove_quotes.c							\
 				display_alias.c							\
 				remove_alias.c							\
 				free_alias.c							\

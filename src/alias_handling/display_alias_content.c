@@ -5,7 +5,7 @@
 ** display the content of an alias
 */
 
-# include <unistd.h>
+# include <stdlib.h>
 # include <string.h>
 # include "alias.h"
 # include "my.h"
@@ -13,9 +13,17 @@
 static	int	display_content(char **array)
 {
 	int	index = 0;
+	char	*copy = 0;
 
 	while (array[index] != NULL) {
-		my_printf("%s", array[index]);
+		if (is_contain_quotes(array[index])) {
+			copy = remove_quotes(array[index]);
+			my_printf("%s", copy);
+			free(copy);
+		}
+		else {
+			my_printf("%s", array[index]);
+		}
 		if (array[index + 1] != NULL) {
 			my_printf(" ");
 		}

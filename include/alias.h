@@ -26,8 +26,10 @@ int	is_alias_exist(char *alias, alias_t **alias_struct);
 int	remove_alias(char **alias, alias_t **alias_struct);
 int	add_alias(char **alias, alias_t **alias_struct);
 int	display_alias(alias_t **alias);
+int	is_contain_quotes(char *str);
 char	**transform_cmd(char **cmd);
 int	free_alias(alias_t **alias);
+char	*remove_quotes(char *str);
 alias_t	*init_alias(void);
 
 # endif		/* ALIAS_H_ */
