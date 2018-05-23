@@ -39,7 +39,7 @@ static	int	check_error(char **cmd, int *status)
 	if (cmd[1] && cmd[1][0] >= '0' && cmd[1][0] <= '9') {
 		write(2, "setenv: Variable name must begin with a letter.\n",
 		48);
-		*status = 1;
+		*status = -1;
 		return (1);
 	}
 	if (check_error_name(cmd, status)) {

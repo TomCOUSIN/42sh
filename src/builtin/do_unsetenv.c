@@ -27,7 +27,7 @@ char	**do_unsetenv(char **cmd, char ***env, int *status, alias_t **alias)
 	(void)alias;
 	if (cmd[1] == NULL) {
 		write(2, "unsetenv: Too few arguments.\n", 29);
-		*status = 1;
+		*status = -1;
 	}
 	else if (check_star(cmd)) {
 		*env = remove_env(*env);

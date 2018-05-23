@@ -29,4 +29,11 @@ int	execute_list(list_t **cmd, char ***env, alias_t **alias);
 */
 int	signal_handler(int status);
 
+/* exec_tools.c */
+char	*my_cat_path(char *dest, char *ori);
+char	*my_strcpy(char *str);
+
+/* exec_binary.c */
+int	check_path(list_t *cmd, char **env);
+
 # endif		/* SH_H_ */

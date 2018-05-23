@@ -67,7 +67,9 @@ PARSING_HANDLING=		$(addprefix separator_handling/, $(PARSING_SEPARATOR_HANDLING
 				free_list.c
 
 SHELL_EXECUTION_HANDLING=	signal_handler.c						\
-				execute_list.c
+				execute_list.c							\
+				exe_binary.c							\
+				exec_tools.c
 
 SHELL_HANDLING=			$(addprefix execution_handling/, $(SHELL_EXECUTION_HANDLING))	\
 				shell.c

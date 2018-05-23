@@ -18,23 +18,21 @@
 # include "my.h"
 # include "sh.h"
 
-static int my_fork(list_t *tmp, char **env)
+static int start_exe(list_t *cmd, char ***env, alias_t **alias)
 {
-	int	pid = 0;
-	int	status = 0;
+	int status = 0;
 
-	pid = fork();
-	if (pid == 0) {
-		status = execve(tmp->cmd[0], tmp->cmd, env);
-		exit(status);
+	find_builtin(cmd->cmd, env, &status, alias);
+	if (status != 2) {
+		status = check_path(cmd, *env);
 	}
-	else if (pid > 0) {
-		return (pid);
+	else {
+		status = 0;
 	}
-	return (-1);
+	return (status);
 }
 
-static int execute_command(list_t *cmd, char **env)
+static int execute_command(list_t *cmd, char **env, alias_t **alias)
 {
 	int	pid_son = 0;
 	int	status = 0;
@@ -42,12 +40,11 @@ static int execute_command(list_t *cmd, char **env)
 
 	if (cmd == NULL)
 		return (0);
-	my_printf("CACACACACC %s\n", cmd->next[CMD]->cmd[0]);
-	pid_son = my_fork(cmd->next[CMD], env);
+	pid_son = start_exe(cmd->next[CMD], &env, alias);
 	if (pid_son == -1)
 		return (-1);
 	next_cmd = cmd->next[SEPARATOR];
-	status = execute_command(next_cmd, env);
+	status = execute_command(next_cmd, env, alias);
 	if (status != 0)
 		return (status);
 	waitpid(pid_son, &status, 0);
@@ -60,12 +57,6 @@ int	execute_list(list_t **cmd, char ***env, alias_t **alias)
 	list_t	*tmp = *cmd;
 	int	status = 0;
 
-	find_builtin(tmp->next[1]->cmd, env, &status, alias);
-	if (status != 2) {
-		status = execute_command(tmp, *env);
-	}
-	else {
-		status = 0;
-	}
+	status = execute_command(tmp, *env, alias);
 	return (status);
 }
