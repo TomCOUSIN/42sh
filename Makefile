@@ -56,6 +56,9 @@ BUILTIN		=		$(addprefix unsetenv/, $(UNSETENV))				\
 ENV_HANDLING=			copy_env.c							\
 				find_env.c
 
+LINE_EDITION=			get_char.c							\
+				get_line.c
+
 PARSING_SEPARATOR_HANDLING=	is_a_separator.c
 
 PARSING_HANDLING=		$(addprefix separator_handling/, $(PARSING_SEPARATOR_HANDLING))	\
@@ -78,6 +81,7 @@ SRC=				$(addprefix src/parsing_handling/, $(PARSING_HANDLING))		\
 				$(addprefix src/shell_handling/, $(SHELL_HANDLING))		\
 				$(addprefix src/alias_handling/, $(ALIAS_HANDLING))		\
 				$(addprefix src/env_handling/, $(ENV_HANDLING))			\
+				$(addprefix src/line_edition/, $(LINE_EDITION))			\
 				$(addprefix src/builtin/, $(BUILTIN))				\
 				src/main.c
 

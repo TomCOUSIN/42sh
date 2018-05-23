@@ -21,7 +21,7 @@ static	int	check_error_name(char **cmd, int *status)
 		&& cmd[1][index] != '_') {
 			write(2, "setenv: Variable name must ", 27);
 			write(2, "contain alphanumeric characters.\n", 33);
-			*status = 1;
+			*status = -1;
 			return (1);
 		}
 		index = index + 1;
@@ -33,7 +33,7 @@ static	int	check_error(char **cmd, int *status)
 {
 	if (my_array_len((char const **)cmd) > 3) {
 		write(2, "setenv: Too many arguments.\n", 28);
-		*status = 1;
+		*status = -1;
 		return (1);
 	}
 	if (cmd[1] && cmd[1][0] >= '0' && cmd[1][0] <= '9') {
