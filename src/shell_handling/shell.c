@@ -10,6 +10,7 @@
 # include <string.h>
 # include "parsing.h"
 # include "alias.h"
+# include "line.h"
 # include "my.h"
 # include "sh.h"
 
@@ -40,7 +41,7 @@ int	shell(char ***env)
 
 	while (1) {
 		display_prompt();
-		str = get_next_line(0);
+		str = get_line();
 		if (stop_shell(str, &alias)) {
 			break;
 		}
