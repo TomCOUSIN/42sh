@@ -27,6 +27,8 @@
 		alias_t **alias);
 	char	**do_cd(char **cmd, char ***env, int *status,
 		alias_t **alias);
+	char	**do_echo(char **cmd, char ***env, int *status,
+		alias_t **alias);
 
 /*
 ** setenv/
@@ -59,5 +61,10 @@
 	int	add_empty_var(char **cmd, char **env);
 	char	**go_back(char **env, int *status);
 	char	**go_home(char **env, int *status);
+
+/*
+** echo/
+**/
+	 void	parse_option(char **argv, int *display_backslash, int *display_return);
 
 # endif		/* BUILTIN_H_ */

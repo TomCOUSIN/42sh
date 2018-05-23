@@ -18,17 +18,18 @@ static	const	char	*builtin[]	=
 	"unsetenv",
 	"alias",
 	"unalias",
+	"echo",
 	NULL
 };
 
 int	find_builtin(char **cmd, char ***env, int *status, alias_t **alias)
 {
 	char	**(*fptr[])(char **, char ***, int *, alias_t **) =
-	{ &do_cd, &do_env, &do_setenv, &do_unsetenv, &add_alias, &remove_alias,
-	NULL};
+	{&do_cd, &do_env, &do_setenv, &do_unsetenv, &add_alias, &remove_alias,
+	 &do_echo, NULL};
 	int	index = 0;
 
-	while (index < 6) {
+	while (index < 7) {
 		if (my_strcmp(builtin[index], cmd[0]) == 0) {
 			*env = (fptr[index])(cmd, env, status, alias);
 			if (*status != 1) {
