@@ -48,8 +48,9 @@ static	int	check_error(char **cmd, int *status)
 	return (0);
 }
 
-char	**do_setenv(char **cmd, char ***env, int *status)
+char	**do_setenv(char **cmd, char ***env, int *status, alias_t **alias)
 {
+	(void)alias;
 	if (check_error(cmd, status)) {
 		return (*env);
 	}

@@ -76,7 +76,6 @@ static	int	change_pwd(char **env)
 	return (0);
 }
 
-
 char	**go_home(char **env, int *status)
 {
 	int	array_index = find_env_variable(env, "HOME");

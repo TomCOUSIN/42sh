@@ -44,13 +44,14 @@ static	int	remove_this_alias(char *alias, alias_t **alias_struct)
 	return (0);
 }
 
-int	remove_alias(char **alias, alias_t **alias_struct)
+char	**remove_alias(char **alias, char ***env, int *status,
+	alias_t **alias_struct)
 {
 	int	index = 1;
 
 	while (alias[index] != NULL) {
-		remove_this_alias(alias[index], alias_struct);
+		*status = remove_this_alias(alias[index], alias_struct);
 		index = index + 1;
 	}
-	return (0);
+	return (*env);
 }

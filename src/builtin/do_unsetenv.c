@@ -22,8 +22,9 @@ static	int	check_star(char **cmd)
 	return (0);
 }
 
-char	**do_unsetenv(char **cmd, char ***env, int *status)
+char	**do_unsetenv(char **cmd, char ***env, int *status, alias_t **alias)
 {
+	(void)alias;
 	if (cmd[1] == NULL) {
 		write(2, "unsetenv: Too few arguments.\n", 29);
 		*status = 1;

@@ -9,13 +9,24 @@
 # define	BUILTIN_H_
 
 /*
+** necessary include
+*/
+
+# include "alias.h"
+
+/*
 ** builtin/
 */
-	char	**do_unsetenv(char **cmd, char ***env, int *status);
-	int	find_builtin(char **cmd, char ***env, int *status);
-	char	**do_setenv(char **cmd, char ***env, int *status);
-	char	**do_env(char **cmd, char ***env, int *status);
-	char	**do_cd(char **cmd, char ***env, int *status);
+	char	**do_unsetenv(char **cmd, char ***env, int *status,
+		alias_t **alias);
+	int	find_builtin(char **cmd, char ***env, int *status,
+		alias_t **alias);
+	char	**do_setenv(char **cmd, char ***env, int *status,
+		alias_t **alias);
+	char	**do_env(char **cmd, char ***env, int *status,
+		alias_t **alias);
+	char	**do_cd(char **cmd, char ***env, int *status,
+		alias_t **alias);
 
 /*
 ** setenv/

@@ -13,21 +13,23 @@
 # include "alias.h"
 # include "my.h"
 
-int	add_alias(char **alias, alias_t **alias_struct)
+char	**add_alias(char **alias, char ***env, int *status,
+	alias_t **alias_struct)
 {
+	(void)env;
 	if (!alias[1]) {
-		display_alias(alias_struct);
-		return (0);
+		*status = display_alias(alias_struct);
+		return (*env);
 	}
 	if (!alias[2]) {
-		display_alias_content(alias[1], alias_struct);
-		return (0);
+		*status = display_alias_content(alias[1], alias_struct);
+		return (*env);
 	}
 	if (is_alias_exist(alias[1], alias_struct)) {
-		overwrite_alias(alias[1], alias, alias_struct);
+		*status = overwrite_alias(alias[1], alias, alias_struct);
 	}
 	else {
-		add_alias_node(alias_struct, alias[1], alias);
+		*status = add_alias_node(alias_struct, alias[1], alias);
 	}
-	return (0);
+	return (*env);
 }

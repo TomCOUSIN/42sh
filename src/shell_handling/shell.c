@@ -15,14 +15,9 @@
 
 static	int	display_prompt(void)
 {
-	char	*buf = NULL;
-	size_t	size = 0;
-
 	if (isatty(0)) {
-		buf = getcwd(buf, size);
-		my_printf("%s> ", buf);
+		my_printf("]> ");
 	}
-	free(buf);
 	return (0);
 }
 
