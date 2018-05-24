@@ -44,15 +44,17 @@ SETENV		=		create_new_var_not_empty.c					\
 				overwrite_var.c							\
 				modify_env.c
 
+ECHO		=		print_echo.c							\
+				do_echo.c
+
 BUILTIN		=		$(addprefix unsetenv/, $(UNSETENV))				\
 				$(addprefix setenv/, $(SETENV))					\
+				$(addprefix echo/, $(ECHO))					\
 				$(addprefix cd/, $(CD))						\
 				find_builtin.c							\
 				do_unsetenv.c							\
 				do_setenv.c							\
 				do_env.c							\
-				echo/do_echo.c							\
-				echo/parse_option.c						\
 				do_cd.c
 
 ENV_HANDLING=			copy_env.c							\
