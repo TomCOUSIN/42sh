@@ -23,7 +23,12 @@ static int my_fork(list_t *tmp, char **env)
 
 	pid = fork();
 	if (pid == 0) {
-		status = execve(tmp->cmd[0], tmp->cmd, env);
+		if ((status = execve(tmp->cmd[0], tmp->cmd, env)) == -1) {
+			write(2, tmp->cmd[0], my_strlen(tmp->cmd[0]));
+			write(2, ": Exec format error. Wrong Architecture.\n",
+			41);
+			status = -1;
+		}
 		exit(status);
 	}
 	else if (pid > 0) {
@@ -55,8 +60,10 @@ static char **get_path_tab(char **env)
 
 	if (index == -1)
 		return (NULL);
-	path = env[index];
+	path = strdup(env[index]);
+	path = remove_variable_name(path);
 	tmp = my_strsplit(path, ':');
+	free(path);
 	return (tmp);
 }
 
@@ -90,7 +97,10 @@ int check_path(list_t *cmd, char **env)
 	char **exe = cmd->cmd;
 	int pid = 0;
 
-	if (access(exe[0], R_OK | X_OK) == 0) {
+	if (is_a_directory(exe[0])) {
+		return (-1);
+	}
+	if (access(exe[0], X_OK | R_OK) == 0) {
 		pid = my_fork(cmd, env);
 		return (pid);
 	} else {
@@ -100,9 +110,12 @@ int check_path(list_t *cmd, char **env)
 			exe[0] = name;
 			pid = my_fork(cmd, env);
 		} else {
+			if (is_a_file(exe[0])) {
+				return (-1);
+			}
 			write(2, exe[0], strlen(exe[0]));
 			write(2, ": Command not found.\n", 21);
-			return (1);
+			return (-1);
 		}
 	}
 	return (pid);

@@ -13,17 +13,17 @@
 int	signal_handler(int status)
 {
 	if (WIFSIGNALED(status)) {
-		if (status == 139) {
+		if (status == 139 || status == 11) {
 			write(2, "Segmentation fault\n", 19);
 			status = 139;
 		}
-		if (status == 136) {
+		if (status == 136 || status == 8) {
 			write(2, "Floating exception\n", 19);
 			status = 136;
 		}
 	}
 	else {
-		if (status != 21504) {
+		if (status != 21504 && status != 256) {
 			status = 0;
 		}
 		else {

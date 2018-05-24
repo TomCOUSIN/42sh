@@ -33,7 +33,6 @@ alias_t	*init_alias(void)
 
 	fd = open("./.42shrc", O_RDWR);
 	if (fd == -1) {
-		write(2, "Error when open .42shrc\n", 24);
 		return (NULL);
 	}
 	line = get_next_line(fd);

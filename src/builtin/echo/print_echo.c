@@ -36,6 +36,7 @@ static void	process_string(char const *str, int *status)
 	while ((c = *str++)) {
 		if (c == '$' && *str) {
 			str = print_status(str, &c, status);
+			return;
 		}
 		else {
 			str = print_character(str, &c);

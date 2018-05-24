@@ -77,7 +77,9 @@ PARSING_HANDLING=		$(addprefix separator_handling/, $(PARSING_SEPARATOR_HANDLING
 				create_list.c							\
 				free_list.c
 
-SHELL_EXECUTION_HANDLING=	signal_handler.c						\
+SHELL_EXECUTION_HANDLING=	check_directory_of_file.c					\
+				remove_variable_name.c						\
+				signal_handler.c						\
 				execute_list.c							\
 				exe_binary.c							\
 				exec_tools.c

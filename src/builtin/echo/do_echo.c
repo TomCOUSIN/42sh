@@ -21,5 +21,6 @@ char	**do_echo(char **argv, char ***env, int *status, alias_t **alias)
 		++argv;
 	}
 	print_echo(argv, status, display_return);
+	*status = 0;
 	return (*env);
 }

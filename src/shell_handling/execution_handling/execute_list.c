@@ -18,44 +18,42 @@
 # include "my.h"
 # include "sh.h"
 
-static int start_exe(list_t *cmd, char ***env, shell_t *shell)
+static int start_exe(list_t *cmd, char ***env, shell_t *shell, int *status)
 {
-	int status = 0;
-
-	find_builtin(cmd->cmd, env, &status, shell);
-	if (status != 2) {
-		status = check_path(cmd, *env);
+	find_builtin(cmd->cmd, env, status, shell);
+	if (*status != 2) {
+		*status = check_path(cmd, *env);
 	}
 	else {
-		status = 0;
+		*status = 0;
 	}
-	return (status);
+	return (*status);
 }
 
-static int execute_command(list_t *cmd, shell_t *shell, char ***env)
+static int execute_command(list_t *cmd, shell_t *shell, char ***env,
+	int *status)
 {
 	int	pid_son = 0;
-	int	status = 0;
 	list_t	*next_cmd = NULL;
 
 	if (cmd == NULL)
 		return (0);
-	pid_son = start_exe(cmd->next[CMD], env, shell);
+	pid_son = start_exe(cmd->next[CMD], env, shell, status);
 	if (pid_son == -1)
 		return (-1);
 	next_cmd = cmd->next[SEPARATOR];
-	status = execute_command(next_cmd, shell, env);
-	if (status != 0)
-		return (status);
-	waitpid(pid_son, &status, 0);
-	kill(pid_son, status);
-	return (signal_handler(status));
+	*status = execute_command(next_cmd, shell, env, status);
+	waitpid(pid_son, status, 0);
+	kill(pid_son, *status);
+	return (signal_handler(*status));
 }
 
-int	execute_list(shell_t *shell, char ***env)
+int	execute_list(shell_t *shell, char ***env, int *status)
 {
-	int	status = 0;
-
-	status = execute_command(shell->cmd, shell, env);
-	return (status);
+	execute_command(shell->cmd, shell, env, status);
+	if (*status == -1) {
+		*status = 1;
+		return (1);
+	}
+	return (0);
 }

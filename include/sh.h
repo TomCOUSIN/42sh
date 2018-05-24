@@ -36,7 +36,10 @@ shell_t	*init_shell(void);
 /*
 ** src/shell_handling/execution_handling
 */
-int	execute_list(shell_t *shell, char ***env);
+int	execute_list(shell_t *shell, char ***env, int *status);
+char	*remove_variable_name(char *var);
+int	is_a_directory(char *cmd);
+int	is_a_file(char *cmd);
 
 /*
 ** src/shell_handling/signal_handler.c
