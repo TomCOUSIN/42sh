@@ -21,7 +21,7 @@ void	put_spaces(int index)
 	}
 }
 
-void	show_history(hist_t *history)
+int	show_history(hist_t *history)
 {
 	hist_t	*tmp = history;
 
@@ -32,6 +32,7 @@ void	show_history(hist_t *history)
 			tmp = tmp->next;
 		} while (tmp != history && tmp != NULL);
 	}
+	return (0);
 }
 
 static void	new_line(hist_t **history, hist_t *line)
