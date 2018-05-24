@@ -42,6 +42,7 @@ int	shell(char ***env)
 	while (1) {
 		display_prompt();
 		str = get_line();
+		register_command(str, &shell->history);
 		if (stop_shell(str, shell)) {
 			break;
 		}
