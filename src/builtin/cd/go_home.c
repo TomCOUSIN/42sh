@@ -87,7 +87,7 @@ char	**go_home(char **env, int *status)
 	}
 	else {
 		write(2, "cd: No home directory.\n", 23);
-		*status = 1;
+		*status = -1;
 	}
 	return (env);
 }

@@ -64,11 +64,11 @@ char	**go_to_target(char **cmd, char **env, int *status)
 	if (fd == -1) {
 		write(2, cmd[1], my_strlen(cmd[1]));
 		write(2, ": No such file or directory.\n", 29);
-		*status = 1;
+		*status = -1;
 	} else if (dir == NULL) {
 		write(2, cmd[1], my_strlen(cmd[1]));
 		write(2, ": Not a directory.\n", 19);
-		*status = 1;
+		*status = -1;
 	} else {
 		change_oldpwd(env);
 		chdir(cmd[1]);

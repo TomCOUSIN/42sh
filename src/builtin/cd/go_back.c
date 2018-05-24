@@ -79,7 +79,7 @@ char	**go_back(char **env, int *status)
 	}
 	else {
 		write(2, ": No such file or directory.\n", 29);
-		*status = 1;
+		*status = -1;
 	}
 	return (env);
 }
