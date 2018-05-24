@@ -100,7 +100,8 @@ int check_path(list_t *cmd, char **env)
 			exe[0] = name;
 			pid = my_fork(cmd, env);
 		} else {
-			my_printf("%s: Command not found.\n", exe[0]);
+			write(2, exe[0], strlen(exe[0]));
+			write(2, ": Command not found.\n", 21);
 			return (1);
 		}
 	}
