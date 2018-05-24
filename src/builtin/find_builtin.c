@@ -22,7 +22,7 @@ static	const	char	*builtin[]	=
 	NULL
 };
 
-int	find_builtin(char **cmd, char ***env, int *status, alias_t **alias)
+int	find_builtin(char **cmd, char ***env, int *status, shell_t *shell)
 {
 	char	**(*fptr[])(char **, char ***, int *, alias_t **) =
 	{&do_cd, &do_env, &do_setenv, &do_unsetenv, &add_alias, &remove_alias,
@@ -31,7 +31,7 @@ int	find_builtin(char **cmd, char ***env, int *status, alias_t **alias)
 
 	while (index < 7) {
 		if (my_strcmp(builtin[index], cmd[0]) == 0) {
-			*env = (fptr[index])(cmd, env, status, alias);
+			*env = (fptr[index])(cmd, env, status, &shell->alias);
 			if (*status != 1) {
 				*status = 2;
 			}

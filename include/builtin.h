@@ -15,12 +15,17 @@
 # include "alias.h"
 
 /*
+** necessary include
+*/
+# include "sh.h"
+
+/*
 ** builtin/
 */
 	char	**do_unsetenv(char **cmd, char ***env, int *status,
 		alias_t **alias);
 	int	find_builtin(char **cmd, char ***env, int *status,
-		alias_t **alias);
+		shell_t *shell);
 	char	**do_setenv(char **cmd, char ***env, int *status,
 		alias_t **alias);
 	char	**do_env(char **cmd, char ***env, int *status,
