@@ -15,14 +15,6 @@
 # include "my.h"
 # include "sh.h"
 
-static	int	display_prompt(void)
-{
-	if (isatty(0)) {
-		my_printf("]> ");
-	}
-	return (0);
-}
-
 static	int	stop_shell(char *str, shell_t *shell)
 {
 	if (!str || my_strcmp(str, "exit") == 0) {

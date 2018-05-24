@@ -82,6 +82,7 @@ SHELL_EXECUTION_HANDLING=	signal_handler.c						\
 				exec_tools.c
 
 SHELL_HANDLING=			$(addprefix execution_handling/, $(SHELL_EXECUTION_HANDLING))	\
+				display_prompt.c						\
 				init_shell.c							\
 				shell.c
 

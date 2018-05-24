@@ -1,11 +1,11 @@
 # ==================================================================
-#                       prompt shell variable
-#                       ---------------------
+#						prompt shell variable
+#						---------------------
 # The string which is printed before reading each command from the
 # terminal.
 # ==================================================================
 
-set prompt = "%m:%~> "
+set prompt = "42sh ~>"
 
 # ==================================================================
 # set up useful aliases

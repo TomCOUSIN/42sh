@@ -29,6 +29,7 @@ typedef	struct shell_s
 /*
 ** src/shell_handling
 */
+int	display_prompt(void);
 int	shell(char ***env);
 shell_t	*init_shell(void);
 
@@ -48,7 +49,8 @@ char	*my_strcpy(char *str);
 
 /* exec_binary.c */
 int	check_path(list_t *cmd, char **env);
-/* test */
+
+/* history */
 int	do_history_command(char **cmd, char ***env,
 	int *status, shell_t *shell);
 
