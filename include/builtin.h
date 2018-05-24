@@ -70,7 +70,7 @@
 /*
 ** echo/
 **/
-	void	parse_option(char **argv, int *display_backslash, int *display_return);
-	void	print_echo(char **argv, int *status, int display_backslash, int display_return);
+	char	**parse_option(char **argv, int *display_return);
+	void	print_echo(char **argv, int *status, int display_return);
 
 # endif		/* BUILTIN_H_ */
