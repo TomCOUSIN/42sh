@@ -5,10 +5,11 @@
 ** Find the builtin and excute it
 */
 
-#include <unistd.h>
+# include <unistd.h>
+# include "builtin.h"
+# include "history.h"
 # include "alias.h"
-#include "builtin.h"
-#include "my.h"
+# include "my.h"
 
 static	const	char	*builtin[]	=
 {
@@ -29,6 +30,10 @@ int	find_builtin(char **cmd, char ***env, int *status, shell_t *shell)
 	 &do_echo, NULL};
 	int	index = 0;
 
+	if (check_history(cmd)) {
+		do_history_command(cmd, env, status, shell);
+		return (*status);
+	}
 	while (index < 7) {
 		if (my_strcmp(builtin[index], cmd[0]) == 0) {
 			*env = (fptr[index])(cmd, env, status, &shell->alias);

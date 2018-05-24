@@ -12,6 +12,7 @@
 ** necessary include
 */
 # include "parsing.h"
+# include "history.h"
 # include "alias.h"
 
 /*
@@ -22,6 +23,7 @@ typedef	struct shell_s
 {
 	alias_t	*alias;
 	list_t	*cmd;
+	hist_t	*history;
 } shell_t;
 
 /*
@@ -46,5 +48,8 @@ char	*my_strcpy(char *str);
 
 /* exec_binary.c */
 int	check_path(list_t *cmd, char **env);
+/* test */
+int	do_history_command(char **cmd, char ***env,
+	int *status, shell_t *shell);
 
 # endif		/* SH_H_ */

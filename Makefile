@@ -59,6 +59,10 @@ BUILTIN		=		$(addprefix unsetenv/, $(UNSETENV))				\
 ENV_HANDLING=			copy_env.c							\
 				find_env.c
 
+HISTORY_HANDLING=		do_history_command.c						\
+				register_command.c						\
+				check_history.c
+
 LINE_EDITION=			get_char.c							\
 				get_line.c
 
@@ -82,6 +86,7 @@ SHELL_HANDLING=			$(addprefix execution_handling/, $(SHELL_EXECUTION_HANDLING))	
 				shell.c
 
 SRC=				$(addprefix src/parsing_handling/, $(PARSING_HANDLING))		\
+				$(addprefix src/history_handling/, $(HISTORY_HANDLING))		\
 				$(addprefix src/shell_handling/, $(SHELL_HANDLING))		\
 				$(addprefix src/alias_handling/, $(ALIAS_HANDLING))		\
 				$(addprefix src/env_handling/, $(ENV_HANDLING))			\

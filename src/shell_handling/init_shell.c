@@ -6,6 +6,7 @@
 */
 
 # include <stdlib.h>
+# include "history.h"
 # include "sh.h"
 
 shell_t	*init_shell(void)
@@ -15,5 +16,6 @@ shell_t	*init_shell(void)
 	shell = malloc(sizeof(*shell));
 	shell->alias = init_alias();
 	shell->cmd = NULL;
+	shell->history = NULL;
 	return (shell);
 }

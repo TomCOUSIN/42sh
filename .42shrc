@@ -1,2 +1,15 @@
+# ==================================================================
+#                       prompt shell variable
+#                       ---------------------
+# The string which is printed before reading each command from the
+# terminal.
+# ==================================================================
+
+set prompt = "%m:%~> "
+
+# ==================================================================
+# set up useful aliases
+# ==================================================================
+
 alias toto ls
 alias tutu ls -l | grep Makefile
