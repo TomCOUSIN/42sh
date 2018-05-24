@@ -9,6 +9,7 @@
 # include <unistd.h>
 # include <string.h>
 # include "parsing.h"
+# include "history.h"
 # include "alias.h"
 # include "line.h"
 # include "my.h"
@@ -26,6 +27,7 @@ static	int	stop_shell(char *str, shell_t *shell)
 {
 	if (!str || my_strcmp(str, "exit") == 0) {
 		free_alias(&shell->alias);
+		free_history(&shell->history);
 		free(shell);
 		free(str);
 		return (1);
