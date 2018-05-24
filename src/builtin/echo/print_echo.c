@@ -20,15 +20,15 @@ static void	process_string(char const *str, int *status, int display_backslash)
 		if (c == '$' && *str) {
 			c = *str++;
 			if (c == '?') {
-				printf("%d", *status);
+				my_printf("%d", *status);
 				c = *str++;
 			}
 			else {
-				putchar('$');
+				my_printf("%c", '$');
 			}
 		}
 		if (c) {
-			putchar(c);
+			my_printf("%c", c);
 		}
 	}
 }
@@ -44,10 +44,10 @@ void	print_echo(char **argv, int *status, int display_backslash, int display_ret
 		--argc;
 		++argv;
 		if (argc > 0) {
-			putchar(' ');
+			my_printf("%c", ' ');
 		}
 	}
 	if (display_return == 1) {
-		putchar('\n');
+		my_printf("%c", '\n');
 	}
 }
