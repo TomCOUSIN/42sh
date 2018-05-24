@@ -32,14 +32,15 @@ int	find_builtin(char **cmd, char ***env, int *status, shell_t *shell)
 
 	if (check_history(cmd)) {
 		do_history_command(cmd, env, status, shell);
+		if (*status != 1)
+			*status = 2;
 		return (*status);
 	}
 	while (index < 7) {
 		if (my_strcmp(builtin[index], cmd[0]) == 0) {
 			*env = (fptr[index])(cmd, env, status, &shell->alias);
-			if (*status != 1) {
+			if (*status != 1)
 				*status = 2;
-			}
 		}
 		index = index + 1;
 	}

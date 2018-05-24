@@ -43,7 +43,6 @@ int	shell(char ***env)
 		if (str && my_strcmp(str, "") != 0) {
 			put_first_separator(&shell->cmd);
 			create_list(str, &shell->cmd);
-			//my_show_list(&shell->cmd);
 			status = execute_list(shell, env);
 			free_list(&shell->cmd);
 		}
