@@ -52,6 +52,7 @@ BUILTIN		=		$(addprefix unsetenv/, $(UNSETENV))				\
 				do_setenv.c							\
 				do_env.c							\
 				echo/do_echo.c							\
+				echo/print_echo.c						\
 				echo/parse_option.c						\
 				do_cd.c
 

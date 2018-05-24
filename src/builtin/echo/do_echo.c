@@ -16,8 +16,8 @@ char	**do_echo(char **argv, char ***env, int *status, alias_t **alias)
 
 	(void) env;
 	(void) alias;
-	(void) status;
 	++argv;
 	parse_option(argv, &display_backslash, &display_return);
+	print_echo(argv, status, display_backslash, display_return);
 	return (*env);
 }
