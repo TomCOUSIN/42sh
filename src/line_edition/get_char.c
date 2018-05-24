@@ -11,7 +11,11 @@
 char	get_char(void)
 {
 	char	character[1];
+	int	nb_read = 0;
 
-	read(0, character, 1);
+	nb_read = read(0, character, 1);
+	if (nb_read == 0) {
+		return (0);
+	}
 	return (character[0]);
 }

@@ -17,6 +17,8 @@ char	*get_line(void)
 
 	while (character != 10) {
 		character = get_char();
+		if (character == 0)
+			return (NULL);
 		line = my_realloc(line, len);
 		line[len - 1] = character;
 		len = len + 1;

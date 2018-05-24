@@ -51,8 +51,8 @@ int	shell(char ***env)
 			//my_show_list(&cmd);
 			status = execute_list(&cmd, env, &alias);
 			free_list(&cmd);
-			free(str);
 		}
+		free(str);
 	}
 	return (status);
 }
