@@ -15,14 +15,25 @@
 # include "alias.h"
 
 /*
+** structure
+*/
+
+typedef	struct shell_s
+{
+	alias_t	*alias;
+	list_t	*cmd;
+} shell_t;
+
+/*
 ** src/shell_handling
 */
 int	shell(char ***env);
+shell_t	*init_shell(void);
 
 /*
 ** src/shell_handling/execution_handling
 */
-int	execute_list(list_t **cmd, char ***env, alias_t **alias);
+int	execute_list(shell_t *shell, char ***env);
 
 /*
 ** src/shell_handling/signal_handler.c

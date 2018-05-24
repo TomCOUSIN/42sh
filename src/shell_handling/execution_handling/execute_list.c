@@ -52,11 +52,11 @@ static int execute_command(list_t *cmd, char **env, alias_t **alias)
 	return (signal_handler(status));
 }
 
-int	execute_list(list_t **cmd, char ***env, alias_t **alias)
+int	execute_list(shell_t *shell, char ***env)
 {
-	list_t	*tmp = *cmd;
+	list_t	*tmp = shell->cmd;
 	int	status = 0;
 
-	status = execute_command(tmp, *env, alias);
+	status = execute_command(tmp, *env, &shell->alias);
 	return (status);
 }

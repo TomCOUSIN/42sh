@@ -77,6 +77,7 @@ SHELL_EXECUTION_HANDLING=	signal_handler.c						\
 				exec_tools.c
 
 SHELL_HANDLING=			$(addprefix execution_handling/, $(SHELL_EXECUTION_HANDLING))	\
+				init_shell.c							\
 				shell.c
 
 SRC=				$(addprefix src/parsing_handling/, $(PARSING_HANDLING))		\

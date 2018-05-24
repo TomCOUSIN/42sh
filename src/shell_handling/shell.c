@@ -22,10 +22,11 @@ static	int	display_prompt(void)
 	return (0);
 }
 
-static	int	stop_shell(char *str, alias_t **alias)
+static	int	stop_shell(char *str, shell_t *shell)
 {
 	if (!str || my_strcmp(str, "exit") == 0) {
-		free_alias(alias);
+		free_alias(&shell->alias);
+		free(shell);
 		free(str);
 		return (1);
 	}
@@ -34,23 +35,22 @@ static	int	stop_shell(char *str, alias_t **alias)
 
 int	shell(char ***env)
 {
-	alias_t	*alias = init_alias();
-	list_t	*cmd = NULL;
+	shell_t	*shell = init_shell();
 	char	*str = NULL;
 	int	status = 0;
 
 	while (1) {
 		display_prompt();
 		str = get_line();
-		if (stop_shell(str, &alias)) {
+		if (stop_shell(str, shell)) {
 			break;
 		}
 		if (str && my_strcmp(str, "") != 0) {
-			put_first_separator(&cmd);
-			create_list(str, &cmd);
-			//my_show_list(&cmd);
-			status = execute_list(&cmd, env, &alias);
-			free_list(&cmd);
+			put_first_separator(&shell->cmd);
+			create_list(str, &shell->cmd);
+			//my_show_list(&shell->cmd);
+			status = execute_list(shell, env);
+			free_list(&shell->cmd);
 		}
 		free(str);
 	}
