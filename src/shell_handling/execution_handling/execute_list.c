@@ -40,9 +40,9 @@ static int execute_command(list_t *cmd, shell_t *shell, char ***env,
 	if (cmd == NULL)
 		return (0);
 	pid_son = start_exe(cmd->next[CMD], env, shell, status);
-	if (pid_son == -1 || pid_son == 0)
+	if (pid_son == -1)
 		return (pid_son);
-	prev_cmd = cmd->prev;
+	prev_cmd = cmd->next[0];
 	*status = execute_command(prev_cmd, shell, env, status);
 	waitpid(pid_son, status, 0);
 	kill(pid_son, *status);
@@ -53,10 +53,10 @@ int	execute_list(shell_t *shell, char ***env, int *status)
 {
 	list_t	*tmp = shell->cmd;
 
-	while (tmp->next[SEPARATOR] != NULL) {
+	/*while (tmp->next[SEPARATOR] != NULL) {
 		init_pipe(tmp);
 		tmp = tmp->next[SEPARATOR];
-	}
+	}*/
 	*status = execute_command(tmp, shell, env, status);
 	if (*status == -1)
 		*status = 1;
