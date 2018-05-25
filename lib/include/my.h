@@ -23,6 +23,11 @@
 	int	my_array_free(char **array);
 
 /*
+** math/
+*/
+	int	my_get_nbr(char *str);
+
+/*
 ** str/
 */
 	char	*my_strjoin(char const *str1, char const *str2);
