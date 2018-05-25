@@ -52,8 +52,11 @@ static void	new_line(hist_t **history, hist_t *line)
 
 void	register_command(char *command, hist_t **history)
 {
+	static	int	index = 0;
 	hist_t	*line = NULL;
 
+	remove_command_if_exist(command, history);
+	index = index + 1;
 	line = malloc(sizeof(*line));
 	if (line == NULL) {
 		return;
@@ -61,7 +64,7 @@ void	register_command(char *command, hist_t **history)
 	line->cmd = my_strdup(command);
 	line->next = NULL;
 	if (*history == NULL) {
-		line->index = 1;
+		line->index = index;
 		line->prev = NULL;
 		*history = line;
 	} else {
