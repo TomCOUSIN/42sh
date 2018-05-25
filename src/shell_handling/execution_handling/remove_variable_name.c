@@ -18,6 +18,10 @@ char	*remove_variable_name(char *var)
 		copy[index - 5] = var[index];
 		index = index + 1;
 	}
+	if (var[index - 1] != '/') {
+		copy[index - 5] = '/';
+		index = index + 1;
+	}
 	copy[index - 5] = ':';
 	index = index + 1;
 	copy[index - 5] = '\0';
