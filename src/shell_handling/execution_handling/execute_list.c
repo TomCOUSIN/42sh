@@ -40,12 +40,10 @@ static int execute_command(list_t *cmd, shell_t *shell, char ***env,
 	if (cmd == NULL)
 		return (0);
 	pid_son = start_exe(cmd->next[CMD], env, shell, status);
-	if (pid_son == -1)
-		return (-1);
+	if (pid_son == -1 || pid_son == 0)
+		return (pid_son);
 	prev_cmd = cmd->prev;
 	*status = execute_command(prev_cmd, shell, env, status);
-	if (status != 0)
-		return (*status);
 	waitpid(pid_son, status, 0);
 	kill(pid_son, *status);
 	return (signal_handler(*status));
