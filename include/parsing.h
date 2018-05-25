@@ -8,6 +8,8 @@
 # ifndef	PARSING_H_
 # define	PARSING_H_
 
+# define	INPT	0
+# define	OUTP	1
 # define	CMD	1
 # define	SEPARATOR	0
 
@@ -17,6 +19,7 @@
 typedef	struct list_s
 {
 	char		**cmd;
+	int		pipe[2];
 	struct	list_s	*next[2];
 	struct	list_s	*prev;
 } list_t;
