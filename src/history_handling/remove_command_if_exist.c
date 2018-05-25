@@ -12,23 +12,23 @@
 int	remove_command_if_exist(char *cmd, hist_t **history)
 {
 	hist_t	*tmp = *history;
-	int	index = 0;
 
 	while (tmp) {
-		if (strcmp(tmp->cmd, cmd) == 0 && index == 0) {
+		if (strcmp(tmp->cmd, cmd) == 0 && tmp == history) {
 			*history= tmp->next;
+			if (*history != NULL)
+				(*history)->prev = tmp->prev;
 			free(tmp->cmd);
 			free(tmp);
-			return (0);
 		}
-		if (strcmp(tmp->cmd, cmd) == 0 && index != 0) {
+		else if (strcmp(tmp->cmd, cmd) == 0) {
 			tmp->prev->next = tmp->next;
+			if (tmp->next != NULL)
+				tmp->next->prev = tmp->prev;
 			free(tmp->cmd);
 			free(tmp);
-			return (0);
 		}
 		tmp = tmp->next;
-		index = index + 1;
 	}
 	return (0);
 }
