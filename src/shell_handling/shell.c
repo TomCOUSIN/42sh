@@ -49,7 +49,6 @@ int	shell(char ***env)
 		if (str && my_strcmp(str, "") != 0 && invalid_exit != 84) {
 			put_first_separator(&shell->cmd);
 			create_list(str, &shell->cmd);
-			//my_show_list(&shell->cmd);
 			execute_list(shell, env, &status);
 			free_list(&shell->cmd);
 		}

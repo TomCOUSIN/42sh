@@ -5,6 +5,7 @@
 ** add a node with the separator
 */
 
+# include <string.h>
 # include <stdlib.h>
 # include "parsing.h"
 # include "my.h"
@@ -39,12 +40,14 @@ static	int	put_node(list_t **cmd, char *separator)
 	while (tmp->next[0] != NULL) {
 		tmp = tmp->next[0];
 	}
-	element->cmd = my_str_to_word_array(separator);
+	element->cmd = my_str_to_word_array(";");
 	element->pipe[0] = 0;
 	element->pipe[1] = 1;
 	element->next[0] = NULL;
 	element->next[1] = NULL;
 	element->prev = tmp;
+	my_array_free(element->prev->cmd);
+	element->prev->cmd = my_str_to_word_array(separator);
 	tmp->next[0] = element;
 	return (0);
 }

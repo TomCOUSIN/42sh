@@ -29,6 +29,7 @@ typedef	struct list_s
 */
 int	my_put_separator(list_t **cmd, char *separator);
 int	my_put_in_list(list_t **cmd, char *actual_cmd);
+int	check_if_last_separator(char *str, int index);
 int	create_list(char *str, list_t **cmd);
 int	put_first_separator(list_t **cmd);
 int	my_show_list(list_t **cmd);
