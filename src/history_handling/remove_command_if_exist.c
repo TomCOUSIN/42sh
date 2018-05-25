@@ -14,7 +14,7 @@ int	remove_command_if_exist(char *cmd, hist_t **history)
 	hist_t	*tmp = *history;
 
 	while (tmp) {
-		if (strcmp(tmp->cmd, cmd) == 0 && tmp == history) {
+		if (strcmp(tmp->cmd, cmd) == 0 && tmp == *history) {
 			*history= tmp->next;
 			if (*history != NULL)
 				(*history)->prev = tmp->prev;

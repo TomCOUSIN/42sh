@@ -17,8 +17,9 @@ int	do_history_command(char **cmd, char ***env,
 	(void)env;
 	(void)shell;
 	if (strncmp(cmd[0], "!!", 2) == 0) {
-		*status = my_printf("search_last_execution\n");
-		//cmd = search_last_execution(shell->history);
+		*status = 0;
+		*cmd = shell->history->prev->cmd;
+		return (0);
 	}
 	if (strncmp(cmd[0], "!", 1) == 0) {
 		*status = my_printf("search_execution\n");

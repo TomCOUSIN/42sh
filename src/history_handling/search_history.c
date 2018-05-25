@@ -5,3 +5,7 @@
 ** searches the history for the right command
 */
 
+char	*last_command(hist_t *history)
+{
+
+}
