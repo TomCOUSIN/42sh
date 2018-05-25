@@ -23,7 +23,7 @@ int	do_history_command(char **cmd, char ***env,
 	}
 	if (strncmp(cmd[0], "!", 1) == 0) {
 		*status = my_printf("search_execution\n");
-		//cmd = search_execution(shell->history, my_get_nbr(cmd[0]));
+		*cmd = search_history(shell->history, my_get_nbr(cmd[0]));
 	}
 	if (strncmp(cmd[0], "history", 7) == 0) {
 		*status = show_history(shell->history);

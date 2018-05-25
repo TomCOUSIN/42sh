@@ -18,6 +18,7 @@ typedef struct s_hist {
 /* register_command.c */
 int	remove_command_if_exist(char *cmd, hist_t **history); 
 void	register_command(char *command, hist_t **history);
+char	*search_history(hist_t *history, int pos);
 void	free_history(hist_t **history);
 int	show_history(hist_t *history);
 int	check_history(char **cmd);

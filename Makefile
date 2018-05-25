@@ -63,6 +63,7 @@ ENV_HANDLING=			copy_env.c							\
 HISTORY_HANDLING=		remove_command_if_exist.c					\
 				do_history_command.c						\
 				register_command.c						\
+				search_history.c						\
 				check_history.c
 
 LINE_EDITION=			get_char.c							\
