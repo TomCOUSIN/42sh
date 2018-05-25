@@ -85,6 +85,7 @@ IN_OUT_HANDLING=		in_out_handling.c						\
 
 SHELL_EXECUTION_HANDLING=	$(addprefix in_out_handling/, $(IN_OUT_HANDLING))		\
 				check_directory_of_file.c					\
+				exec_command_in_path.c						\
 				remove_variable_name.c						\
 				signal_handler.c						\
 				execute_list.c							\

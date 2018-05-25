@@ -16,7 +16,7 @@
 # include "builtin.h"
 # include "sh.h"
 
-static int my_fork(list_t *tmp, char **env)
+int my_fork(list_t *tmp, char **env)
 {
 	int	pid = 0;
 	int	status = 0;
@@ -36,6 +36,7 @@ static int my_fork(list_t *tmp, char **env)
 	}
 	return (-1);
 }
+
 static char *find_name(DIR *dir, char *name)
 {
 	struct dirent *stru = NULL;
@@ -67,7 +68,7 @@ static char **get_path_tab(char **env)
 	return (tmp);
 }
 
-static char *find_path(char *name, char **env)
+char *find_path(char *name, char **env)
 {
 	char **path = get_path_tab(env);
 	char **tmp_path = path;
@@ -93,7 +94,6 @@ static char *find_path(char *name, char **env)
 
 int check_path(list_t *cmd, char **env)
 {
-	char *name = NULL;
 	char **exe = cmd->cmd;
 	int pid = 0;
 
@@ -104,19 +104,7 @@ int check_path(list_t *cmd, char **env)
 		pid = my_fork(cmd, env);
 		return (pid);
 	} else {
-		name = find_path(exe[0], env);
-		if (name) {
-			free(exe[0]);
-			exe[0] = name;
-			pid = my_fork(cmd, env);
-		} else {
-			if (is_a_file(exe[0])) {
-				return (-1);
-			}
-			write(2, exe[0], strlen(exe[0]));
-			write(2, ": Command not found.\n", 21);
-			return (-1);
-		}
+		pid = exec_command_with_path(cmd, env, exe);
 	}
 	return (pid);
 }

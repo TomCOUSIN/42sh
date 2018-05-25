@@ -11,6 +11,7 @@
 /*
 ** necessary include
 */
+# include <dirent.h>
 # include "parsing.h"
 # include "history.h"
 # include "alias.h"
@@ -51,7 +52,10 @@ char	*my_cat_path(char *dest, char *ori);
 char	*my_strcpy(char *str);
 
 /* exec_binary.c */
+int	exec_command_with_path(list_t *cmd, char **env, char **exe);
 int	check_path(list_t *cmd, char **env);
+char *find_path(char *name, char **env);
+int my_fork(list_t *tmp, char **env);
 
 /* history */
 int	do_history_command(char **cmd, char ***env,
