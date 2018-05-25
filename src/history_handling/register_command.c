@@ -6,6 +6,7 @@
 */
 
 #include	<stdlib.h>
+#include	<string.h>
 #include	"history.h"
 #include	"my.h"
 
@@ -55,6 +56,8 @@ void	register_command(char *command, hist_t **history)
 	static	int	index = 0;
 	hist_t	*line = NULL;
 
+	if (strcmp(command, "") == 0)
+		return;
 	remove_command_if_exist(command, history);
 	index = index + 1;
 	line = malloc(sizeof(*line));
