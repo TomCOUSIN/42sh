@@ -11,6 +11,8 @@ GNL	=	get_next_line.c
 
 ALLOC	=	my_realloc.c
 
+MATH	=	my_get_nbr.c
+
 PRINTF	=	my_printf.c			\
 		my_putchar.c			\
 		my_putstr.c			\
@@ -44,6 +46,7 @@ SRC	=	$(addprefix get_next_line/, $(GNL))	\
 		$(addprefix printf/, $(PRINTF))		\
 		$(addprefix array/, $(ARRAY))		\
 		$(addprefix alloc/, $(ALLOC))		\
+		$(addprefix math/, $(MATH))	\
 		$(addprefix str/, $(STR))
 
 CFLAGS	=	-Wall -Wextra -I./include/
