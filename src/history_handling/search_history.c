@@ -13,7 +13,7 @@ static char	*search_exec(hist_t *history, int pos)
 	hist_t	*tmp = history;
 
 	while (tmp != NULL) {
-		if (tmp->index != pos) {
+		if (tmp->index == pos) {
 			return (tmp->cmd);
 		}
 		tmp = tmp->next;

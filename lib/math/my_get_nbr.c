@@ -7,10 +7,14 @@
 
 int	my_get_nbr(char *str)
 {
+	int	neg = 1;
 	int	nb = 0;
 	int	index = 0;
 
 	while (str[index] != '\0' && (str[index] < '0' || str[index] > '9')) {
+		if (str[index] == '-') {
+			neg = neg * -1;
+		}
 		index = index + 1;
 	}
 	while (str[index] >= '0' && str[index] <= '9') {
@@ -18,5 +22,5 @@ int	my_get_nbr(char *str)
 		nb = nb + str[index] - '0';
 		index = index + 1;
 	}
-	return (nb);
+	return (nb * neg);
 }
