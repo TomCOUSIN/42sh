@@ -17,9 +17,12 @@
 
 static	int	stop_shell(char *str, shell_t *shell, int *status)
 {
-	if (str && strcmp(str, "exit") != 0 && strncmp(str, "exit", 4) == 0) {
+	char	**cmd = my_str_to_word_array(str);
+
+	if (strcmp(cmd[0], "exit") == 0 && cmd[1]) {
 		write(2, "exit: Expression Syntax.\n", 25);
 		*status = 1;
+		my_array_free(cmd);
 		return (84);
 	}
 	else if (!str || my_strcmp(str, "exit") == 0) {
@@ -27,8 +30,10 @@ static	int	stop_shell(char *str, shell_t *shell, int *status)
 		free_history(&shell->history);
 		free(shell);
 		free(str);
+		my_array_free(cmd);
 		return (1);
 	}
+	my_array_free(cmd);
 	return (0);
 }
 
