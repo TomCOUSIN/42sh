@@ -15,6 +15,7 @@
 # include "my.h"
 # include "builtin.h"
 # include "sh.h"
+# include "my.h"
 
 int my_fork(list_t *tmp, char **env)
 {

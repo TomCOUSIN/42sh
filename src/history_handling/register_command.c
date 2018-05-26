@@ -55,24 +55,24 @@ void	register_command(char *command, hist_t **history)
 {
 	static	int	index = 0;
 	hist_t	*line = NULL;
+	char	*cmd = NULL;
 
-	if (strcmp(command, "") == 0)
+	cmd = get_command(command);
+	if (cmd == NULL || strcmp(command, "") == 0)
 		return;
 	remove_command_if_exist(command, history);
 	index = index + 1;
 	line = malloc(sizeof(*line));
-	if (line == NULL) {
+	if (line == NULL)
 		return;
-	}
-	line->cmd = my_strdup(command);
+	line->cmd = my_strdup(cmd);
 	line->next = NULL;
 	if (*history == NULL) {
 		line->index = index;
 		line->prev = NULL;
 		*history = line;
-	} else {
+	} else
 		new_line(history, line);
-	}
 }
 
 void	free_history(hist_t **history)

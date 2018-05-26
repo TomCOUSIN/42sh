@@ -45,5 +45,5 @@ char *my_cat_path(char *dest, char *ori)
 	}
 	free(ori);
 	*tmp_ret = '\0';
-	return(ret);
+	return (ret);
 }

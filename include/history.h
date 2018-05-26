@@ -15,12 +15,13 @@ typedef struct s_hist {
 	struct s_hist	*prev;
 } hist_t;
 
-/* register_command.c */
-int	remove_command_if_exist(char *cmd, hist_t **history); 
+/* history_handling */
+int	remove_command_if_exist(char *cmd, hist_t **history);
 void	register_command(char *command, hist_t **history);
 char	*search_history(hist_t *history, int pos);
 void	free_history(hist_t **history);
 int	show_history(hist_t *history);
+char	*get_command(char *command);
 int	check_history(char **cmd);
 
 #endif	/* HISTORY_H_ */

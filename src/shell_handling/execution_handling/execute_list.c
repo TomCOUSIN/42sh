@@ -22,10 +22,10 @@
 static int start_exe(list_t *cmd, char ***env, shell_t *shell, int *status)
 {
 	find_builtin(cmd->cmd, env, status, shell);
-	if (*status != 2) {
+	if (*status != 2 && *status != -1) {
 		*status = check_path(cmd, *env);
 	}
-	else {
+	else if (*status == 2) {
 		*status = 0;
 	}
 	return (*status);

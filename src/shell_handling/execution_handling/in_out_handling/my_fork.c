@@ -27,7 +27,7 @@ void rm_node(list_t *node)
 	free(node);
 }
 
-int my_pipe(int *io[2], __attribute__((unused)) list_t *cmd)
+int my_pipe(int *io[], __attribute__((unused)) list_t *cmd)
 {
 	if (pipe(*io) == -1)
 		return (-1);

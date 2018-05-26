@@ -10,6 +10,7 @@
 # include <stdlib.h>
 # include "parsing.h"
 # include "sh.h"
+# include "my.h"
 
 int	exec_command_with_path(list_t *cmd, char **env, char **exe)
 {

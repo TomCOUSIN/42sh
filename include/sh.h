@@ -58,6 +58,9 @@ char *find_path(char *name, char **env);
 int my_fork(list_t *tmp, char **env);
 
 /* history */
+int	execute_history_function(char **cmd, char ***env,
+	int *status, shell_t *shell);
+int	execute_last_command(shell_t *shell, int *status, char ***env);
 int	do_history_command(char **cmd, char ***env,
 	int *status, shell_t *shell);
 

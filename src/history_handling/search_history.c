@@ -23,9 +23,14 @@ static char	*search_exec(hist_t *history, int pos)
 
 char	*search_history(hist_t *history, int pos)
 {
+	char	*str = NULL;
+
 	if (pos >= 0) {
-		return (search_exec(history, pos));
+		str = search_exec(history, pos);
 	} else {
-		return (search_exec(history, history->prev->index + pos + 1));
+		if (!history || !history->prev)
+			return (NULL);
+		str = search_exec(history, history->prev->index + pos + 1);
 	}
+	return (str);
 }

@@ -60,11 +60,14 @@ BUILTIN		=		$(addprefix unsetenv/, $(UNSETENV))				\
 ENV_HANDLING=			copy_env.c							\
 				find_env.c
 
-HISTORY_HANDLING=		remove_command_if_exist.c					\
+HISTORY_HANDLING=		execute_history_function.c					\
+				remove_command_if_exist.c					\
+				execute_last_command.c						\
 				do_history_command.c						\
 				register_command.c						\
 				search_history.c						\
-				check_history.c
+				check_history.c							\
+				get_command.c
 
 LINE_EDITION=			get_char.c							\
 				get_line.c
