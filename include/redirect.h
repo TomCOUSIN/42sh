@@ -28,5 +28,6 @@ int	double_right(int io[2], list_t *cmd);
 /* connextion_in_out.c*/
 void	close_std(list_t *cmd);
 int	redirect_std(list_t *cmd);
+void	get_stds(int io[2], list_t *cmd);
 
 #endif		/* _REDIRECT_H_ */

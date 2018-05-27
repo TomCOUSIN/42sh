@@ -32,7 +32,6 @@ int double_right(int io[2], list_t *cmd)
 	int mod = O_WRONLY | O_APPEND;
 	int fd = open(file_name, mod);
 
-	printf("file name %s\n", file_name);
 	if (fd == -1) {
 		my_printf("%s: no such file o directorie\n", file_name);
 		return (-1);

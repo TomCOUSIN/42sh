@@ -21,7 +21,7 @@
 
 static int start_exe(list_t *cmd, char ***env, shell_t *shell, int *status)
 {
-	find_builtin(cmd->next[CMD]->cmd, env, status, shell);
+	find_builtin(cmd, env, status, shell);
 	if (*status != 2) {
 		*status = check_path(cmd, *env);
 	}

@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include "redirect.h"
 
-static void get_stds(int io[2], list_t *cmd)
+void get_stds(int io[2], list_t *cmd)
 {
 	list_t *prev = cmd->prev;
 
@@ -20,7 +20,7 @@ static void get_stds(int io[2], list_t *cmd)
 	io[OUTP] = cmd->pipe[OUTP];
 }
 
-static void  connextion_std(int io[2])
+static void connextion_std(int io[2])
 {
 	if (io[INPT] != 0) {
 		dup2(io[INPT], 0);
@@ -57,7 +57,7 @@ void close_std(list_t *cmd)
 	int io[2] = {0, 1};
 
 	get_stds(io, cmd);
-	if (io[INPT] != 0)
+	if (io[INPT] != 0 && io[INPT] != cmd->pipe[INPT])
 		close(io[INPT]);
 	if (io[OUTP] != 1)
 		close(io[OUTP]);
