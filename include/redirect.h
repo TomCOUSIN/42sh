@@ -14,15 +14,19 @@
 int	init_pipe(list_t *separator);
 
 /* my_pipe.c */
-int	my_pipe(int *io[2], list_t *cmd);
+int	my_pipe(int io[2], list_t *cmd);
 void	rm_node(list_t *node);
 
 /* left_redirec.c */
-int	simple_left(int *io[2], list_t *cmd);
-int	double_left(int *io[2], list_t *cmd);
+int	simple_left(int io[2], list_t *cmd);
+int	double_left(int io[2], list_t *cmd);
 
 /* right_redirection.c */
-int	simple_right(int *io[2], list_t *cmd);
-int	double_right(int *io[2], list_t *cmd);
+int	simple_right(int io[2], list_t *cmd);
+int	double_right(int io[2], list_t *cmd);
+
+/* connextion_in_out.c*/
+void	close_std(list_t *cmd);
+int	redirect_std(list_t *cmd);
 
 #endif		/* _REDIRECT_H_ */

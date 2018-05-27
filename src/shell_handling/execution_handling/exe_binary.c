@@ -15,17 +15,18 @@
 # include "my.h"
 # include "builtin.h"
 # include "sh.h"
-# include "my.h"
+# include "redirect.h"
 
-int my_fork(list_t *tmp, char **env)
+int my_fork(list_t *tmp, char **env, char **exe)
 {
 	int	pid = 0;
 	int	status = 0;
 
 	pid = fork();
 	if (pid == 0) {
-		if ((status = execve(tmp->cmd[0], tmp->cmd, env)) == -1) {
-			write(2, tmp->cmd[0], my_strlen(tmp->cmd[0]));
+		redirect_std(tmp);
+		if ((status = execve(exe[0], exe, env)) == -1) {
+			write(2, exe[0], my_strlen(exe[0]));
 			write(2, ": Exec format error. Wrong Architecture.\n",
 			41);
 			status = -1;
@@ -33,6 +34,7 @@ int my_fork(list_t *tmp, char **env)
 		exit(status);
 	}
 	else if (pid > 0) {
+		close_std(tmp);
 		return (pid);
 	}
 	return (-1);
@@ -95,14 +97,14 @@ char *find_path(char *name, char **env)
 
 int check_path(list_t *cmd, char **env)
 {
-	char **exe = cmd->cmd;
+	char **exe = cmd->next[CMD]->cmd;
 	int pid = 0;
 
 	if (is_a_directory(exe[0])) {
 		return (-1);
 	}
 	if (access(exe[0], X_OK | R_OK) == 0) {
-		pid = my_fork(cmd, env);
+		pid = my_fork(cmd, env, exe);
 		return (pid);
 	} else {
 		pid = exec_command_with_path(cmd, env, exe);

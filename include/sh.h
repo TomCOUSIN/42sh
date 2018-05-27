@@ -54,14 +54,14 @@ char	*my_strcpy(char *str);
 /* exec_binary.c */
 int	exec_command_with_path(list_t *cmd, char **env, char **exe);
 int	check_path(list_t *cmd, char **env);
-char *find_path(char *name, char **env);
-int my_fork(list_t *tmp, char **env);
+char	*find_path(char *name, char **env);
+int	my_fork(list_t *tmp, char **env, char **exe);
 
 /* history */
 int	execute_history_function(char **cmd, char ***env,
-	int *status, shell_t *shell);
+				int *status, shell_t *shell);
 int	execute_last_command(shell_t *shell, int *status, char ***env);
 int	do_history_command(char **cmd, char ***env,
-	int *status, shell_t *shell);
+			int *status, shell_t *shell);
 
 # endif		/* SH_H_ */

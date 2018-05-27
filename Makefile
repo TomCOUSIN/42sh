@@ -85,7 +85,8 @@ PARSING_HANDLING=		$(addprefix separator_handling/, $(PARSING_SEPARATOR_HANDLING
 IN_OUT_HANDLING=		in_out_handling.c						\
 				left_redirec.c							\
 				my_fork.c							\
-				right_redirection.c
+				right_redirection.c						\
+				connection_in_out.c
 
 SHELL_EXECUTION_HANDLING=	$(addprefix in_out_handling/, $(IN_OUT_HANDLING))		\
 				check_directory_of_file.c					\

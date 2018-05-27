@@ -10,7 +10,6 @@
 # include <stdlib.h>
 # include "parsing.h"
 # include "sh.h"
-# include "my.h"
 
 int	exec_command_with_path(list_t *cmd, char **env, char **exe)
 {
@@ -21,7 +20,7 @@ int	exec_command_with_path(list_t *cmd, char **env, char **exe)
 	if (name) {
 		free(exe[0]);
 		exe[0] = name;
-		pid = my_fork(cmd, env);
+		pid = my_fork(cmd, env, exe);
 	} else {
 		if (is_a_file(exe[0])) {
 			return (-1);

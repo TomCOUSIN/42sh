@@ -12,18 +12,18 @@
 #include "my.h"
 #include "redirect.h"
 
-int simple_left(int *io[2], list_t *cmd)
+int simple_left(int io[2], list_t *cmd)
 {
 	char *file_name = cmd->next[SEPARATOR]->next[CMD]->cmd[0];
-	int mod = O_WRONLY;
+	int mod = O_RDONLY;
 	int fd = open(file_name, mod);
 
 	if (fd == -1) {
 		my_printf("%s: no such file o directorie\n", file_name);
 		return (-1);
 	}
-	*io[OUTP] = fd;
-	rm_node(cmd);
+	io[INPT] = fd;
+	rm_node(cmd->next[SEPARATOR]);
 	return (1);
 }
 
@@ -47,7 +47,7 @@ static int write_in_pipe(char *word)
 	return (tmp[0]);
 }
 
-int double_left(int *io[2], list_t *cmd)
+int double_left(int io[2], list_t *cmd)
 {
 	char *word = cmd->next[SEPARATOR]->next[CMD]->cmd[0];
 	int fd = 0;
@@ -55,7 +55,7 @@ int double_left(int *io[2], list_t *cmd)
 	fd = write_in_pipe(word);
 	if (fd == -1)
 		return (-1);
-	*io[INPT] = fd;
-	rm_node(cmd);
+	io[INPT] = fd;
+	rm_node(cmd->next[SEPARATOR]);
 	return (0);
 }
