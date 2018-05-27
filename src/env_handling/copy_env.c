@@ -28,7 +28,7 @@ char	**copy_env(char **envp)
 {
 	char	**copy = NULL;
 
-	if (envp) {
+	if (envp[0]) {
 		copy = my_array_dup((char const **)envp);
 	}
 	else {
