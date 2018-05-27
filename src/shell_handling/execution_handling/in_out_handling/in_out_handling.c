@@ -34,9 +34,9 @@ int init_pipe(list_t *separator)
 	while (index < 5) {
 		if (my_strcmp(separator->cmd[0], tab_separator[index]) == 0) {
 			ret = fptr_tab[index]((separator->pipe), separator);
-			return(ret);
+			return (ret);
 		}
 		++index;
 	}
-	return(0);
+	return (0);
 }

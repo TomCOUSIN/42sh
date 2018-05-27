@@ -20,8 +20,11 @@ ALIAS_HANDLING	=		display_alias_content.c						\
 				remove_quotes.c							\
 				display_alias.c							\
 				remove_alias.c							\
+				change_array.c							\
+				check_alias.c							\
 				free_alias.c							\
 				init_alias.c							\
+				find_loop.c							\
 				add_alias.c
 
 CD		=		find_env_variable.c						\
@@ -80,6 +83,7 @@ PARSING_HANDLING=		$(addprefix separator_handling/, $(PARSING_SEPARATOR_HANDLING
 				my_put_in_list.c						\
 				my_show_list.c							\
 				create_list.c							\
+				check_list.c							\
 				free_list.c
 
 IN_OUT_HANDLING=		in_out_handling.c						\

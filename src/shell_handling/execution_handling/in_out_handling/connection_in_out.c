@@ -35,7 +35,7 @@ static void close_unuse_fd(list_t *cmd)
 {
 	list_t *prev = cmd->prev;
 
-	if (prev !=  NULL)
+	if (prev != NULL)
 		if (prev->pipe[OUTP] != 1)
 			close(prev->pipe[OUTP]);
 	if (cmd->pipe[INPT] != 0)

@@ -25,12 +25,14 @@ typedef	struct shell_s
 	alias_t	*alias;
 	list_t	*cmd;
 	hist_t	*history;
+	int	status;
+	char	*prompt;
 } shell_t;
 
 /*
 ** src/shell_handling
 */
-int	display_prompt(void);
+int	display_prompt(shell_t *shell);
 int	shell(char ***env);
 shell_t	*init_shell(void);
 
@@ -63,5 +65,10 @@ int	execute_history_function(char **cmd, char ***env,
 int	execute_last_command(shell_t *shell, int *status, char ***env);
 int	do_history_command(char **cmd, char ***env,
 			int *status, shell_t *shell);
+
+/* alias */
+int	change_array(list_t *tmp, alias_t *alias, int *status);
+int	check_alias(shell_t *shell, int *status);
+int	find_loop(shell_t *shell, char *save);
 
 # endif		/* SH_H_ */

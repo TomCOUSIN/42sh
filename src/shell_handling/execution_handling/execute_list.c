@@ -53,6 +53,10 @@ int	execute_list(shell_t *shell, char ***env, int *status)
 {
 	list_t	*tmp = shell->cmd;
 
+	if (tmp == NULL) {
+		*status = 1;
+		return (*status);
+	}
 	while (tmp->next[SEPARATOR] != NULL) {
 		init_pipe(tmp);
 		if (tmp->next[SEPARATOR] != NULL)

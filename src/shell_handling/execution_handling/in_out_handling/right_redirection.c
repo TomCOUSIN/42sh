@@ -15,7 +15,7 @@ int simple_right(int io[2], list_t *cmd)
 {
 	char *file_name = cmd->next[SEPARATOR]->next[CMD]->cmd[0];
 	int mod = O_WRONLY;
-	int fd = open(file_name, mod);
+	int fd = open(file_name, mod | O_CREAT, 0664);
 
 	if (fd == -1) {
 		my_printf("%s: no such file o directorie\n", file_name);
@@ -30,7 +30,7 @@ int double_right(int io[2], list_t *cmd)
 {
 	char *file_name = cmd->next[SEPARATOR]->next[CMD]->cmd[0];
 	int mod = O_WRONLY | O_APPEND;
-	int fd = open(file_name, mod);
+	int fd = open(file_name, mod | O_CREAT, 0664);
 
 	if (fd == -1) {
 		my_printf("%s: no such file o directorie\n", file_name);

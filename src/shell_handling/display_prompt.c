@@ -10,6 +10,19 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "my.h"
+# include "sh.h"
+
+static	char	*default_prompt(void)
+{
+	char	*prompt = NULL;
+
+	prompt = malloc(sizeof(char) * 4);
+	prompt[0] = ']';
+	prompt[1] = '>';
+	prompt[2] = ' ';
+	prompt[3] = '\0';
+	return (prompt);
+}
 
 static	char	*get_prompt(char *str)
 {
@@ -46,31 +59,35 @@ static	char	*find_prompt(int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	prompt = malloc(sizeof(char) * 4);
-	prompt[0] = ']';
-	prompt[1] = '>';
-	prompt[2] = ' ';
-	prompt[3] = '\0';
+	prompt = default_prompt();
 	return (prompt);
 }
 
-int	display_prompt(void)
+static	char	*create_prompt(void)
 {
-	int	fd = 0;
 	char	*prompt = NULL;
+	int	fd = 0;
 
 	fd = open("./.42shrc", O_RDWR);
 	if (fd == -1) {
-		if (isatty(0)) {
-			my_printf("]> ");
-		}
+		prompt = default_prompt();
 	} else {
 		prompt = find_prompt(fd);
-		if (isatty(0)) {
-			my_printf("%s", prompt);
-		}
-		free(prompt);
 		close(fd);
+	}
+	return (prompt);
+}
+
+int	display_prompt(shell_t *shell)
+{
+	static	int	set_prompt = 0;
+
+	if (set_prompt == 0) {
+		shell->prompt = create_prompt();
+		set_prompt = 1;
+	}
+	if (isatty(0)) {
+		my_printf("%s", shell->prompt);
 	}
 	return (0);
 }

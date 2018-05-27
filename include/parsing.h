@@ -34,5 +34,6 @@ int	create_list(char *str, list_t **cmd);
 int	put_first_separator(list_t **cmd);
 int	my_show_list(list_t **cmd);
 int	free_list(list_t **list);
+int	check_list(list_t **cmd);
 
 # endif		/* PARSING_H_ */

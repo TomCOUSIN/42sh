@@ -22,7 +22,7 @@ int	exec_command_with_path(list_t *cmd, char **env, char **exe)
 		exe[0] = name;
 		pid = my_fork(cmd, env, exe);
 	} else {
-		if (is_a_file(exe[0])) {
+		if (is_a_file(exe[0]) || strcmp(exe[0], "exit") == 0) {
 			return (-1);
 		}
 		write(2, exe[0], strlen(exe[0]));

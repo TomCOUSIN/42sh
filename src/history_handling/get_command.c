@@ -21,8 +21,7 @@ char	*get_command(char *command)
 			index_1 = index_1 + 1;
 		if (command[index_1] == '\0')
 			return (NULL);
-		cmd = malloc(sizeof(char) * strlen(command));
-		if (cmd == NULL)
+		if ((cmd = malloc(sizeof(char) * strlen(command))) == NULL)
 			return (NULL);
 		while (command[index_1] != '\0') {
 			cmd[index_2] = command[index_1];

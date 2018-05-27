@@ -11,5 +11,5 @@ set prompt = "]> "
 # set up useful aliases
 # ==================================================================
 
-alias toto ls
-alias tutu ls -l | grep Makefile
+alias ls ls --color=auto
+alias ne emacs -nw
